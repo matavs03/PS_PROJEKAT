@@ -123,7 +123,8 @@ public class Trkac implements ApstraktniDomenskiObjekat{
             String prezime1 = rs.getString("trkac.prezime");
             String email1 = rs.getString("trkac.email");
             int nivoFormeId1 = rs.getInt("trkac.nivoForme");
-            NivoForme nf = new NivoForme(nivoFormeId1, null);
+            String opis = rs.getString("nivoforme.opis");
+            NivoForme nf = new NivoForme(nivoFormeId1, opis);
             Trkac t = new Trkac(idTrkac1, ime1, prezime1, email1, nf);
             lista.add(t);
         }

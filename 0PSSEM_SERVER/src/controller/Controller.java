@@ -8,7 +8,7 @@ import domen.Trener;
 import domen.Trkac;
 import java.util.List;
 import operacija.LoginOperacija;
-import operacija.UcitajTrkaceSO;
+import operacija.trkac.UcitajTrkaceSO;
 
 /**
  *
