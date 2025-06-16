@@ -23,7 +23,7 @@ public class Konfiguracija {
     private Konfiguracija(){
         konfiguracija = new Properties();
         try {
-            konfiguracija.load(new FileInputStream("C:\\Users\\MataVS\\Documents\\NetBeansProjects\\0PSSEM_SERVER\\config\\config.properties"));
+            konfiguracija.load(new FileInputStream("C:\\Users\\MataVS\\Documents\\NetBeansProjects\\PS_PROJEKAT\\0PSSEM_SERVER\\config\\config.properties"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Konfiguracija.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
