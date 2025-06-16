@@ -1,0 +1,62 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package cordinator;
+
+import controller.GlavnaFormaController;
+import controller.LoginController;
+import controller.PrikazTrkacaController;
+import domen.Trener;
+import forme.GlavnaForma;
+import forme.LoginForma;
+import forme.PrikazTrkacaForma;
+
+/**
+ *
+ * @author MataVS
+ */
+public class Cordinator {
+    private static Cordinator instance;
+    private Trener ulogovani;
+    private LoginController loginController;
+    private GlavnaFormaController gfController;
+    private PrikazTrkacaController ptController;
+    
+    private Cordinator(){
+        
+    }
+    
+    public static Cordinator getInstance(){
+        if(instance==null)
+            instance = new Cordinator();
+        return instance;
+    }
+
+    public void otvoriLoginFormu() {
+        loginController = new LoginController(new LoginForma());
+        loginController.otvoriFormu();
+    }
+    
+    public void otvoriGlavnuFormu(){
+        gfController = new GlavnaFormaController(new GlavnaForma());
+        gfController.otvoriFormu();
+    }
+    
+    public void otvoriPrikazTrkacaFormu() {
+        ptController = new PrikazTrkacaController(new PrikazTrkacaForma());
+        ptController.otvoriFormu();
+    }
+
+    public void setUlogovani(Trener ulogovani) {
+        this.ulogovani = ulogovani;
+    }
+
+    public Trener getUlogovani() {
+        return ulogovani;
+    }
+
+    
+    
+    
+}
