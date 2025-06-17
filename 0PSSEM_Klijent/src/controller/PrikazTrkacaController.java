@@ -7,7 +7,12 @@ package controller;
 import domen.Trkac;
 import forme.PrikazTrkacaForma;
 import forme.model.ModelTabeleTrkac;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +26,28 @@ public class PrikazTrkacaController {
         addActionListeners();
     }
 
-    private void addActionListeners() {
+    private void addActionListeners(){
+        ptf.addBtnObrisiActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = ptf.getTblTrkaci().getSelectedRow();
+                if(red==-1){
+                    JOptionPane.showMessageDialog(null, "STAVITI GRESKU KAO U DOKUMENTACIJI!");
+                }
+                else{
+                    ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
+                    Trkac t = mtt.getLista().get(red);
+                    try {
+                        komunikacija.Komunikacija.getInstance().obrisiTrkaca(t);
+                        JOptionPane.showMessageDialog(null, "Uspesno obrisan trkac");
+                        pripremiFormu();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(null, "UBACITI GRESKU IZ DOKUMENTACIJE!");
+                    }
+                    
+                }
+            }
+        });
     }
 
     public void otvoriFormu() {

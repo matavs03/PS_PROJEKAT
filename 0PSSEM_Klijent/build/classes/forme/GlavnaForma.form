@@ -18,6 +18,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Dodaj trka&#x10d;"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
@@ -26,7 +29,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnitPrikaziTrkace">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Prikazi trkace"/>
+                <Property name="text" type="java.lang.String" value="Prika&#x17e;i trka&#x10d;e"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnitPrikaziTrkaceActionPerformed"/>

@@ -13,5 +13,8 @@ import java.io.Serializable;
 public enum Operacija implements Serializable{
    LOGIN,
    UCITAJ_TRKACE,
+   OBRISI_TRKACA,
+   UCITAJ_NIVO_FORME,
+   DODAJ_TRKACA,
    
 }

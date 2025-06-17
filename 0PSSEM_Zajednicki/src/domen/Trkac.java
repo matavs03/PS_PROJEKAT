@@ -31,6 +31,15 @@ public class Trkac implements ApstraktniDomenskiObjekat{
         this.nivoForme = nivoForme;
     }
 
+    public Trkac(String ime, String prezime, String email, NivoForme nivoForme) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.email = email;
+        this.nivoForme = nivoForme;
+    }
+    
+    
+
     public int getIdTrkac() {
         return idTrkac;
     }

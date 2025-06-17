@@ -55,6 +55,7 @@ public class LoginController {
     public void otvoriFormu() {
         lf.setLocationRelativeTo(null);
         lf.setVisible(true);
+        
     }
 
     

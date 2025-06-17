@@ -5,6 +5,7 @@
 package niti;
 
 import controller.Controller;
+import domen.NivoForme;
 import domen.Trener;
 import domen.Trkac;
 import java.io.IOException;
@@ -60,6 +61,32 @@ public class ObradaKlijentskihZahteva extends Thread {
                         List<Trkac> trkaci = Controller.getInstance().ucitajTrkace();
                         
                         odgovor.setOdgovor(trkaci);
+                        break;
+                        
+                    case OBRISI_TRKACA:
+                        try {
+                            Trkac trkac = (Trkac) zahtev.getParametar();
+                            Controller.getInstance().obrisiTrkaca(trkac);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        
+                        break;
+                        
+                    case UCITAJ_NIVO_FORME:
+                        List<NivoForme> nivoiForme = Controller.getInstance().ucitajNivoForme();
+                        
+                        odgovor.setOdgovor(nivoiForme);
+                        break;
+                        
+                    case DODAJ_TRKACA:                       
+                        try {
+                            Controller.getInstance().dodajTrkaca((Trkac)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
                         break;
                     default:
                         System.out.println("Operacija ne postoji");

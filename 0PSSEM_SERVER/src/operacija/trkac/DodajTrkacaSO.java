@@ -5,32 +5,24 @@
 package operacija.trkac;
 
 import domen.Trkac;
-import java.util.List;
 import operacija.ApstraktnaGenerickaOperacija;
 
 /**
  *
- * @author MataVS
+ * @author lazar
  */
-public class UcitajTrkaceSO extends ApstraktnaGenerickaOperacija {
-    private List<Trkac> trkaci;
+public class DodajTrkacaSO extends ApstraktnaGenerickaOperacija {
 
-    public List<Trkac> getTrkaci() {
-        return trkaci;
-    }
-    
-    
-    
     @Override
     protected void preduslovi(Object objekat) throws Exception {
-     
+        if(objekat==null || !(objekat instanceof Trkac)){
+            throw new Exception("UBACITI GRESKU IZ DOKUMENTACIJE!");
+        }
     }
 
     @Override
     protected void izvrsiOperaciju(Object objekat, String kljuc) throws Exception {
-        kljuc = " JOIN nivoforme ON trkac.nivoforme = nivoforme.idnivoforme ORDER BY trkac.idTrkac ASC";
-        trkaci = broker.getAll(objekat, kljuc);
-        
+        broker.add(objekat);
     }
     
 }

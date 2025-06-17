@@ -14,10 +14,14 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTabeleTrkac extends AbstractTableModel {
     private List<Trkac> lista;
-    private String[] kolone = {"id","ime","prezime","email", "nivo forme"};
+    private String[] kolone = {"ID Trkaca","Ime","Prezime","E-Mail", "Nivo forme"};
 
     public ModelTabeleTrkac(List<Trkac> lista) {
         this.lista = lista;
+    }
+
+    public List<Trkac> getLista() {
+        return lista;
     }
     
     

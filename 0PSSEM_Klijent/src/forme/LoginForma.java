@@ -43,6 +43,10 @@ public class LoginForma extends javax.swing.JFrame {
 
         jLabel2.setText("password:");
 
+        txtUsrname.setText("mika03");
+
+        passPassword.setText("mika03");
+
         btnLogin.setText("Login");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -4,10 +4,12 @@
  */
 package cordinator;
 
+import controller.DodajTrkacaController;
 import controller.GlavnaFormaController;
 import controller.LoginController;
 import controller.PrikazTrkacaController;
 import domen.Trener;
+import forme.DodajTrkacaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazTrkacaForma;
@@ -22,6 +24,7 @@ public class Cordinator {
     private LoginController loginController;
     private GlavnaFormaController gfController;
     private PrikazTrkacaController ptController;
+    private DodajTrkacaController dtController;
     
     private Cordinator(){
         
@@ -54,6 +57,11 @@ public class Cordinator {
 
     public Trener getUlogovani() {
         return ulogovani;
+    }
+
+    public void otvoriDodajTrkacaFormu() {
+        dtController = new DodajTrkacaController(new DodajTrkacaForma());
+        dtController.otvoriFormu();
     }
 
     

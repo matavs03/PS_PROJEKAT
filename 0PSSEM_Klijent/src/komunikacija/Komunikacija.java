@@ -4,6 +4,7 @@
  */
 package komunikacija;
 
+import domen.NivoForme;
 import domen.Trener;
 import domen.Trkac;
 import java.io.IOException;
@@ -61,14 +62,47 @@ public class Komunikacija {
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_TRKACE, null);
 //        zahtev.setOperacija(Operacija.UCITAJ_TRKACE);
         pos.posalji(zahtev);
-        try {
-            s.setSoTimeout(5000);
-        } catch (SocketException ex) {
-            Logger.getLogger(Komunikacija.class.getName()).log(Level.SEVERE, null, ex);
-        }
         Odgovor odg = (Odgovor) prim.primi();
         trkaci = (List<Trkac>) odg.getOdgovor();
         return trkaci;
+    }
+
+    public void obrisiTrkaca(Trkac t) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_TRKACA, t);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            System.out.println("GRESKA");
+            Exception e = (Exception) odg.getOdgovor();
+            e.printStackTrace();
+            throw new Exception("GRESKA");
+        }
+    }
+
+    public List<NivoForme> ucitajNivoForme() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_NIVO_FORME, null);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        List<NivoForme> lista = (List<NivoForme>) odg.getOdgovor();
+        return lista;
+    }
+
+    public void dodajTrkaca(Trkac trkac) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_TRKACA, trkac);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            System.out.println("GRESKA");
+            Exception e = (Exception) odg.getOdgovor();
+            e.printStackTrace();
+            throw new Exception("GRESKA");
+        }
     }
     
 }

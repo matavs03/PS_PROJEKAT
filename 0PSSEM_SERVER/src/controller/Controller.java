@@ -4,10 +4,14 @@
  */
 package controller;
 
+import domen.NivoForme;
 import domen.Trener;
 import domen.Trkac;
 import java.util.List;
-import operacija.LoginOperacija;
+import operacija.nivoforme.UcitajNivoFormeSO;
+import operacija.trener.LoginOperacija;
+import operacija.trkac.DodajTrkacaSO;
+import operacija.trkac.ObrisiTrkacaSO;
 import operacija.trkac.UcitajTrkaceSO;
 
 /**
@@ -41,4 +45,25 @@ public class Controller {
         
         return operacija.getTrkaci();
     }
+
+    public void obrisiTrkaca(Trkac trkac) throws Exception {
+        
+        ObrisiTrkacaSO operacija = new ObrisiTrkacaSO();
+        operacija.izvrsi(trkac, null);
+    }
+
+    public List<NivoForme> ucitajNivoForme() throws Exception {
+        NivoForme nf = new NivoForme();
+        UcitajNivoFormeSO operacija = new UcitajNivoFormeSO();
+        operacija.izvrsi(nf, null);
+        return operacija.getLista();
+    }
+
+    public void dodajTrkaca(Trkac trkac) throws Exception {
+        DodajTrkacaSO operacija = new DodajTrkacaSO();
+        operacija.izvrsi(trkac, null);
+        
+    }
+
+    
 }

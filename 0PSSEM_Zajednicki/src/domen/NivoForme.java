@@ -43,7 +43,7 @@ public class NivoForme implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
-        return String.valueOf(idNivoForme);
+        return opis;
     }
 
     @Override
