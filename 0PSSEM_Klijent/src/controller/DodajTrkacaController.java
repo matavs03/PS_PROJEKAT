@@ -55,7 +55,7 @@ public class DodajTrkacaController {
                         NivoForme nf = (NivoForme) dtf.getCbxNivoForme().getSelectedItem();
                         Trkac trkac = new Trkac(ime, preime, email, nf);
                         komunikacija.Komunikacija.getInstance().dodajTrkaca(trkac);
-                        JOptionPane.showMessageDialog(null, "Usepsno sacuvan trkac");
+                        JOptionPane.showMessageDialog(null, "Uspešno sačuvan trkač");
                         dtf.dispose();
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "GRESKA");

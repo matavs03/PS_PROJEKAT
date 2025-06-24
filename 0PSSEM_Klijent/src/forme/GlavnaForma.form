@@ -16,16 +16,11 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Dodaj trka&#x10d;"/>
+                <Property name="text" type="java.lang.String" value="Dodaj trka&#x10d;a"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pretra&#x17e;i trka&#x10d;"/>
-              </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnitPrikaziTrkace">
               <Properties>
@@ -44,30 +39,19 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="dodaj trening"/>
+                <Property name="text" type="java.lang.String" value="Dodaj trening"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="pretra&#x17e;i trening"/>
+                <Property name="text" type="java.lang.String" value="Prika&#x17e;i treninge"/>
               </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nivo forme"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Dodaj nivo forme"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Pretra&#x17e;i NF"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem4ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

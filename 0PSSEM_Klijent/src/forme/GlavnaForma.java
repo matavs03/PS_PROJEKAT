@@ -38,14 +38,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         mnitPrikaziTrkace = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -70,16 +66,13 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenu1.setText("Trkač");
 
-        jMenuItem1.setText("Dodaj trkač");
+        jMenuItem1.setText("Dodaj trkača");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Pretraži trkač");
-        jMenu1.add(jMenuItem2);
 
         mnitPrikaziTrkace.setText("Prikaži trkače");
         mnitPrikaziTrkace.addActionListener(new java.awt.event.ActionListener() {
@@ -93,23 +86,23 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenu2.setText("Trening");
 
-        jMenuItem3.setText("dodaj trening");
+        jMenuItem3.setText("Dodaj trening");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setText("pretraži trening");
+        jMenuItem4.setText("Prikaži treninge");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Nivo forme");
-
-        jMenuItem6.setText("Dodaj nivo forme");
-        jMenu3.add(jMenuItem6);
-
-        jMenuItem7.setText("Pretraži NF");
-        jMenu3.add(jMenuItem7);
-
-        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -150,6 +143,14 @@ public class GlavnaForma extends javax.swing.JFrame {
         cordinator.Cordinator.getInstance().otvoriDodajTrkacaFormu();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        cordinator.Cordinator.getInstance().otvoriPrikazTreningaFormu();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        cordinator.Cordinator.getInstance().otvoriDodajTreningFormu();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -170,15 +171,11 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblUlogovani;

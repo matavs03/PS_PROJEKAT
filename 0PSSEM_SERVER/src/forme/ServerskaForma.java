@@ -17,7 +17,7 @@ public class ServerskaForma extends javax.swing.JFrame {
      */
     public ServerskaForma() {
         initComponents();
-        server = new Server();
+        
         lblStatus.setText("");
         btnZaustaviServer.setEnabled(false);
     }
@@ -117,7 +117,7 @@ public class ServerskaForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPokreniServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokreniServerActionPerformed
-        
+        server = new Server();
         server.start();
         lblStatus.setText("Pokrenut");
         btnZaustaviServer.setEnabled(true);

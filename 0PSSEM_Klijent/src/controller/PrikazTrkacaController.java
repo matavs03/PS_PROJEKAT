@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
  * @author MataVS
  */
 public class PrikazTrkacaController {
+
     private final PrikazTrkacaForma ptf;
 
     public PrikazTrkacaController(PrikazTrkacaForma ptf) {
@@ -26,25 +27,28 @@ public class PrikazTrkacaController {
         addActionListeners();
     }
 
-    private void addActionListeners(){
+    private void addActionListeners() {
         ptf.addBtnObrisiActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int red = ptf.getTblTrkaci().getSelectedRow();
-                if(red==-1){
+                if (red == -1) {
                     JOptionPane.showMessageDialog(null, "STAVITI GRESKU KAO U DOKUMENTACIJI!");
-                }
-                else{
-                    ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
-                    Trkac t = mtt.getLista().get(red);
-                    try {
-                        komunikacija.Komunikacija.getInstance().obrisiTrkaca(t);
-                        JOptionPane.showMessageDialog(null, "Uspesno obrisan trkac");
-                        pripremiFormu();
-                    } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "UBACITI GRESKU IZ DOKUMENTACIJE!");
+                } else {
+                    int potvrda = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da obrišete trkača?");
+
+                    if (potvrda == JOptionPane.YES_OPTION) {
+                        ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
+                        Trkac t = mtt.getLista().get(red);
+                        try {
+                            komunikacija.Komunikacija.getInstance().obrisiTrkaca(t);
+                            JOptionPane.showMessageDialog(null, "Uspešno obrisan trkač");
+                            pripremiFormu();
+                        } catch (Exception ex) {
+                            JOptionPane.showMessageDialog(null, "UBACITI GRESKU IZ DOKUMENTACIJE!");
+                        }
                     }
-                    
+
                 }
             }
         });
@@ -60,6 +64,5 @@ public class PrikazTrkacaController {
         List<Trkac> trkaci = komunikacija.Komunikacija.getInstance().ucitajTrkace();
         ptf.getTblTrkaci().setModel(new ModelTabeleTrkac(trkaci));
     }
-    
-    
+
 }

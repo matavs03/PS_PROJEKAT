@@ -6,6 +6,7 @@ package komunikacija;
 
 import domen.NivoForme;
 import domen.Trener;
+import domen.Trening;
 import domen.Trkac;
 import java.io.IOException;
 import java.net.Socket;
@@ -92,6 +93,43 @@ public class Komunikacija {
 
     public void dodajTrkaca(Trkac trkac) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.DODAJ_TRKACA, trkac);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            System.out.println("GRESKA");
+            Exception e = (Exception) odg.getOdgovor();
+            e.printStackTrace();
+            throw new Exception("GRESKA");
+        }
+    }
+
+    public List<Trening> ucitajTreninge() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_TRENINGE, null);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        return (List<Trening>) odg.getOdgovor();
+    }
+
+    public void obrisiTrening(Trening treningZaBrisanje) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_TRENING, treningZaBrisanje);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            System.out.println("GRESKA");
+            Exception e = (Exception) odg.getOdgovor();
+            e.printStackTrace();
+            throw new Exception("GRESKA");
+        }
+    }
+
+    public void dodajTrening(Trening noviTrening) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_TRENING, noviTrening);
         pos.posalji(zahtev);
         Odgovor odg = (Odgovor) prim.primi();
         if(odg.getOdgovor()==null){

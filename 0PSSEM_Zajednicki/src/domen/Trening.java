@@ -27,6 +27,14 @@ public class Trening implements ApstraktniDomenskiObjekat{
         this.opis = opis;
     }
 
+    public Trening(String naziv, String opis) {
+        this.naziv = naziv;
+        this.opis = opis;
+    }
+
+    
+
+
     public int getIdTrening() {
         return idTrening;
     }
@@ -91,7 +99,7 @@ public class Trening implements ApstraktniDomenskiObjekat{
         while(rs.next()){
             int idTrening1 = rs.getInt("trening.idTrening");
             String naziv1 = rs.getString("trening.naziv");
-            String opis1 = rs.getString("trening.opis1");
+            String opis1 = rs.getString("trening.opis");
             Trening t = new Trening(idTrening1, naziv1, opis1);
             lista.add(t);
         }

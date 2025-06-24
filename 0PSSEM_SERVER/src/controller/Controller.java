@@ -6,10 +6,14 @@ package controller;
 
 import domen.NivoForme;
 import domen.Trener;
+import domen.Trening;
 import domen.Trkac;
 import java.util.List;
 import operacija.nivoforme.UcitajNivoFormeSO;
-import operacija.trener.LoginOperacija;
+import operacija.LoginOperacija;
+import operacija.trening.DodajTreningSO;
+import operacija.trening.ObrisiTreningSO;
+import operacija.trening.UcitajTreningeSO;
 import operacija.trkac.DodajTrkacaSO;
 import operacija.trkac.ObrisiTrkacaSO;
 import operacija.trkac.UcitajTrkaceSO;
@@ -63,6 +67,22 @@ public class Controller {
         DodajTrkacaSO operacija = new DodajTrkacaSO();
         operacija.izvrsi(trkac, null);
         
+    }
+
+    public List<Trening> ucitajTreninge() throws Exception {
+        UcitajTreningeSO operacija = new UcitajTreningeSO();
+        operacija.izvrsi(new Trening(), null);
+        return operacija.getLista();
+    }
+
+    public void obrisiTrening(Trening treningZaBrisanje) throws Exception {
+        ObrisiTreningSO operacija = new ObrisiTreningSO();
+        operacija.izvrsi(treningZaBrisanje, null);
+    }
+
+    public void dodajTrening(Trening noviTrening) throws Exception {
+        DodajTreningSO operacija = new DodajTreningSO();
+        operacija.izvrsi(noviTrening, null);
     }
 
     

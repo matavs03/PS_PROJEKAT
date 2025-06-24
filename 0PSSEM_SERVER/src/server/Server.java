@@ -8,6 +8,7 @@ import java.util.List;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,43 +18,50 @@ import niti.ObradaKlijentskihZahteva;
  *
  * @author MataVS
  */
-public class Server extends Thread{
-    
+public class Server extends Thread {
+
     boolean kraj = false;
     ServerSocket ss;
     List<ObradaKlijentskihZahteva> klijenti = new LinkedList<>();
 
     @Override
     public void run() {
-       pokreniServer();
+        pokreniServer();
     }
-    
-    private int uzmiBrojPorta(){
+
+    private int uzmiBrojPorta() {
         return Integer.parseInt(konfiguracija.Konfiguracija.getInstance().getProperty("port"));
     }
-    
-    
-    public void pokreniServer(){
+
+    public void pokreniServer() {
+
         try {
             ss = new ServerSocket(uzmiBrojPorta());
-            while(!kraj){
-            Socket s = ss.accept();
-                System.out.println("Klijent povezan");    
-                
-                ObradaKlijentskihZahteva okz = new ObradaKlijentskihZahteva(s);
-                klijenti.add(okz);
-                okz.start();
-        }
+            System.out.println("SERVERSKI SOKET OTVOREN");
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+        while (!kraj) {
+            try {
+                Socket s = ss.accept();
+                System.out.println("Klijent povezan");
+                ObradaKlijentskihZahteva okz = new ObradaKlijentskihZahteva(s);
+                klijenti.add(okz);
+                okz.start();
+            } catch (SocketException ex) {
+                System.out.println("SERVERSKI SOKET ZATVOREN");
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }
-    
-    public void zaustaviServer(){
-        kraj=true;
+
+    public void zaustaviServer() {
+        kraj = true;
         try {
-            for(ObradaKlijentskihZahteva k: klijenti){
+            for (ObradaKlijentskihZahteva k : klijenti) {
                 k.prekiniNit();
             }
             ss.close();
@@ -62,5 +70,5 @@ public class Server extends Thread{
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

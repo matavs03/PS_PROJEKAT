@@ -28,8 +28,8 @@ public class DbRepositoryGeneric implements DbRepository<ApstraktniDomenskiObjek
         
         Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
         ResultSet rs = st.executeQuery(upit);
-        
         lista = param.vratiListu(rs);
+        
         rs.close();
         st.close();
         
