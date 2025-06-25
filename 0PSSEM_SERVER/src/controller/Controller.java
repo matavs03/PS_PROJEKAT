@@ -11,6 +11,7 @@ import domen.Trkac;
 import java.util.List;
 import operacija.nivoforme.UcitajNivoFormeSO;
 import operacija.LoginOperacija;
+import operacija.nivoforme.ObrisiNivoFormeSO;
 import operacija.trening.DodajTreningSO;
 import operacija.trening.ObrisiTreningSO;
 import operacija.trening.UcitajTreningeSO;
@@ -83,6 +84,11 @@ public class Controller {
     public void dodajTrening(Trening noviTrening) throws Exception {
         DodajTreningSO operacija = new DodajTreningSO();
         operacija.izvrsi(noviTrening, null);
+    }
+
+    public void obrisiNivoForme(NivoForme nf) throws Exception {
+        ObrisiNivoFormeSO operacija = new ObrisiNivoFormeSO();
+        operacija.izvrsi(nf, null);
     }
 
     

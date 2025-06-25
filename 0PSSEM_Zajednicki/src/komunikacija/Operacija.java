@@ -19,5 +19,6 @@ public enum Operacija implements Serializable{
    UCITAJ_TRENINGE,
    OBRISI_TRENING,
    DODAJ_TRENING,
+   OBRISI_NIVO_FORME,
    
 }

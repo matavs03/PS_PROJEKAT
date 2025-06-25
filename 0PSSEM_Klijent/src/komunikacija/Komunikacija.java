@@ -76,10 +76,7 @@ public class Komunikacija {
             System.out.println("USPEH");
         }
         else{
-            System.out.println("GRESKA");
-            Exception e = (Exception) odg.getOdgovor();
-            e.printStackTrace();
-            throw new Exception("GRESKA");
+            throw (Exception) odg.getOdgovor();
         }
     }
 
@@ -99,10 +96,7 @@ public class Komunikacija {
             System.out.println("USPEH");
         }
         else{
-            System.out.println("GRESKA");
-            Exception e = (Exception) odg.getOdgovor();
-            e.printStackTrace();
-            throw new Exception("GRESKA");
+            throw (Exception) odg.getOdgovor();
         }
     }
 
@@ -121,10 +115,7 @@ public class Komunikacija {
             System.out.println("USPEH");
         }
         else{
-            System.out.println("GRESKA");
-            Exception e = (Exception) odg.getOdgovor();
-            e.printStackTrace();
-            throw new Exception("GRESKA");
+            throw (Exception) odg.getOdgovor();
         }
     }
 
@@ -136,10 +127,26 @@ public class Komunikacija {
             System.out.println("USPEH");
         }
         else{
-            System.out.println("GRESKA");
-            Exception e = (Exception) odg.getOdgovor();
-            e.printStackTrace();
-            throw new Exception("GRESKA");
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public List<NivoForme> ucitajNivoeForme() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_NIVO_FORME, null);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        return (List<NivoForme>) odg.getOdgovor();
+    }
+
+    public void obrisiNivoForme(NivoForme nf) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_NIVO_FORME, nf);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
         }
     }
     

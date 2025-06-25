@@ -20,7 +20,7 @@ import komunikacija.Operacija;
 import komunikacija.Posiljalac;
 import komunikacija.Primalac;
 import komunikacija.Zahtev;
-
+import java.sql.SQLException;
 /**
  *
  * @author MataVS
@@ -112,6 +112,19 @@ public class ObradaKlijentskihZahteva extends Thread {
                             Controller.getInstance().dodajTrening(noviTrening);
                             odgovor.setOdgovor(null);
                         } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case OBRISI_NIVO_FORME:
+                        try {
+                            NivoForme nf = (NivoForme) zahtev.getParametar();
+                            Controller.getInstance().obrisiNivoForme(nf);
+                            odgovor.setOdgovor(null);
+                        }catch(SQLException sqle){
+                            odgovor.setOdgovor(sqle);
+                        }
+                        catch (Exception e) {
                             odgovor.setOdgovor(e);
                         }
                         break;

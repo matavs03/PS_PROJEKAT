@@ -8,6 +8,7 @@ import controller.DodajTreningController;
 import controller.DodajTrkacaController;
 import controller.GlavnaFormaController;
 import controller.LoginController;
+import controller.PrikazNivoaFormeController;
 import controller.PrikazTreningaController;
 import controller.PrikazTrkacaController;
 import domen.Trener;
@@ -15,6 +16,7 @@ import forme.DodajTreningForma;
 import forme.DodajTrkacaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
+import forme.PrikazNivoaFormeForma;
 import forme.PrikazTreningaForma;
 import forme.PrikazTrkacaForma;
 
@@ -31,6 +33,7 @@ public class Cordinator {
     private DodajTrkacaController dtController;
     private PrikazTreningaController ptrController;
     private DodajTreningController dtfController;
+    private PrikazNivoaFormeController pnnfController;
     
     private Cordinator(){
         
@@ -78,6 +81,11 @@ public class Cordinator {
     public void otvoriDodajTreningFormu() {
         dtfController = new DodajTreningController(new DodajTreningForma());
         dtfController.otvoriFormu();
+    }
+
+    public void otvoriPrikazNivoaFormeFormu() {
+        pnnfController = new PrikazNivoaFormeController(new PrikazNivoaFormeForma());
+        pnnfController.otvoriFormu();
     }
 
     

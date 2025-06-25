@@ -33,7 +33,7 @@ public class PrikazTrkacaController {
             public void actionPerformed(ActionEvent e) {
                 int red = ptf.getTblTrkaci().getSelectedRow();
                 if (red == -1) {
-                    JOptionPane.showMessageDialog(null, "STAVITI GRESKU KAO U DOKUMENTACIJI!");
+                    JOptionPane.showMessageDialog(null, "Niste izabrali red");
                 } else {
                     int potvrda = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da obrišete trkača?");
 
