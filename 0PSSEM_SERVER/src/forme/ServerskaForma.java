@@ -42,6 +42,8 @@ public class ServerskaForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnPokreniServer.setBackground(new java.awt.Color(153, 255, 153));
+        btnPokreniServer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnPokreniServer.setText("POKRENI SERVER");
         btnPokreniServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +51,8 @@ public class ServerskaForma extends javax.swing.JFrame {
             }
         });
 
+        btnZaustaviServer.setBackground(new java.awt.Color(255, 153, 153));
+        btnZaustaviServer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnZaustaviServer.setText("ZAUSTAVI SERVER");
         btnZaustaviServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +95,7 @@ public class ServerskaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnPokreniServer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(btnZaustaviServer))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)

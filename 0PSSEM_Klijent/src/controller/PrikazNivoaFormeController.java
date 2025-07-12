@@ -51,10 +51,10 @@ public class PrikazNivoaFormeController {
                         NivoForme nf = mtnf.getLista().get(red);
                         try {
                             komunikacija.Komunikacija.getInstance().obrisiNivoForme(nf);
-                            JOptionPane.showMessageDialog(null, "USPEH");
+                            JOptionPane.showMessageDialog(null, "Sistem je obrisao nivo forme");
                             pripremiFormu();
                         }catch (Exception ex) {
-                            JOptionPane.showMessageDialog(null, "GRESKA");
+                            JOptionPane.showMessageDialog(null, "Sistem ne može da obriše nivo forme");
                         }
                     }
                 }

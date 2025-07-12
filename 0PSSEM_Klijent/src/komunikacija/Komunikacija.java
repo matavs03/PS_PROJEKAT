@@ -5,6 +5,7 @@
 package komunikacija;
 
 import domen.NivoForme;
+import domen.Sertifikat;
 import domen.Trener;
 import domen.Trening;
 import domen.Trkac;
@@ -140,6 +141,93 @@ public class Komunikacija {
 
     public void obrisiNivoForme(NivoForme nf) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_NIVO_FORME, nf);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void dodajNivoForme(NivoForme nf) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_NIVO_FORME, nf);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+
+    public List<Trener> ucitajTrenere() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_TRENERE, null);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        return (List<Trener>) odg.getOdgovor();
+    }
+
+    public void obrisiTrenera(Trener trenerZaBrisanje) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_TRENERA, trenerZaBrisanje);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void dodajTrenera(Trener noviTrener) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_TRENERA, noviTrener);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public List<Sertifikat> ucitajSertifikate() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_SERTIFIKATE, null);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        return (List<Sertifikat>) odg.getOdgovor();
+    }
+
+    public void obrisiSertifikat(Sertifikat s) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_SERTIFIKAT, s);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void dodajSertifikat(Sertifikat s) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_SERTIFIKAT, s);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void azurirajTrkaca(Trkac trkac) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_TRKACA, trkac);
         pos.posalji(zahtev);
         Odgovor odg = (Odgovor) prim.primi();
         if(odg.getOdgovor()==null){

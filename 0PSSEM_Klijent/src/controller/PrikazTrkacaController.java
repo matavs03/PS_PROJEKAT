@@ -4,6 +4,7 @@
  */
 package controller;
 
+import domen.NivoForme;
 import domen.Trkac;
 import forme.PrikazTrkacaForma;
 import forme.model.ModelTabeleTrkac;
@@ -42,14 +43,42 @@ public class PrikazTrkacaController {
                         Trkac t = mtt.getLista().get(red);
                         try {
                             komunikacija.Komunikacija.getInstance().obrisiTrkaca(t);
-                            JOptionPane.showMessageDialog(null, "Uspešno obrisan trkač");
+                            JOptionPane.showMessageDialog(null, "Sistem je obrisao trkača");
                             pripremiFormu();
                         } catch (Exception ex) {
-                            JOptionPane.showMessageDialog(null, "UBACITI GRESKU IZ DOKUMENTACIJE!");
+                            JOptionPane.showMessageDialog(null, "Sistem ne može da obriše trkača");
                         }
                     }
 
                 }
+            }
+        });
+
+        ptf.addBtnAzurirajActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = ptf.getTblTrkaci().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste izabrali red");
+                    return;
+                }
+                ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
+                Trkac t = mtt.getLista().get(red);
+                cordinator.Cordinator.getInstance().dodajParam("trkac", t);
+                cordinator.Cordinator.getInstance().otvoriIzmeniTrkacaFormu();
+               
+            }
+        });
+        
+        ptf.addPretraziActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ime = ptf.getTxtIme().getText().strip();
+                String prezime = ptf.getTxtPrezime().getText().strip();
+                String email = ptf.getTxtEmail().getText().strip();
+                NivoForme nf = (NivoForme) ptf.getCbxNivoForme().getSelectedItem();
+                ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
+                mtt.pretrazi(ime, prezime, email, nf);
             }
         });
     }
@@ -60,9 +89,15 @@ public class PrikazTrkacaController {
         ptf.setVisible(true);
     }
 
-    private void pripremiFormu() {
+    public void pripremiFormu() {
         List<Trkac> trkaci = komunikacija.Komunikacija.getInstance().ucitajTrkace();
         ptf.getTblTrkaci().setModel(new ModelTabeleTrkac(trkaci));
+        List<NivoForme> nf = komunikacija.Komunikacija.getInstance().ucitajNivoeForme();
+        ptf.getCbxNivoForme().addItem(null);
+        for (NivoForme nivoForme : nf) {
+            ptf.getCbxNivoForme().addItem(nivoForme);
+        }
+        ptf.getCbxNivoForme().setSelectedItem(null);
     }
 
 }

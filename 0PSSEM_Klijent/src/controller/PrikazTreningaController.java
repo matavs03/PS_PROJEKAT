@@ -45,10 +45,10 @@ public class PrikazTreningaController {
                     try {
                         Trening treningZaBrisanje = (Trening) ptf.getCbxTreninzi().getSelectedItem();
                         komunikacija.Komunikacija.getInstance().obrisiTrening(treningZaBrisanje);
-                        JOptionPane.showMessageDialog(null, "Uspešno obrisan trening");
+                        JOptionPane.showMessageDialog(null, "Sistem je obrisao trening");
                         pripremiFormu();
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "GRESKA IZ DOKUMENTACIJE");
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da obriše trening");
                     }
                 }
                 

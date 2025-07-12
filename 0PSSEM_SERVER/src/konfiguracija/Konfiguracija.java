@@ -51,7 +51,7 @@ public class Konfiguracija {
     
     public void sacuvajIzmene(){
         try {
-            konfiguracija.store(new FileOutputStream("C:\\Users\\MataVS\\Documents\\NetBeansProjects\\0PSSEM_SERVER\\config\\config.properties"), null);
+            konfiguracija.store(new FileOutputStream("config/config.properties"), null);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
             Logger.getLogger(Konfiguracija.class.getName()).log(Level.SEVERE, null, ex);

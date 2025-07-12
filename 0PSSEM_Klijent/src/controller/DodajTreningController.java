@@ -39,10 +39,10 @@ public class DodajTreningController {
                 dtf.getTxtaOpis().setText("");
                 try {
                     komunikacija.Komunikacija.getInstance().dodajTrening(noviTrening);
-                    JOptionPane.showMessageDialog(null, "Uspešno sačuvan trening");
+                    JOptionPane.showMessageDialog(null, "Sistem je zapamtio trening");
                     dtf.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "GRESKA IZ KONTROLERA");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti trening");
                 }
             }
         });

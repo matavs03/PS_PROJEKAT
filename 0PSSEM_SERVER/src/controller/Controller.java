@@ -5,16 +5,25 @@
 package controller;
 
 import domen.NivoForme;
+import domen.Sertifikat;
 import domen.Trener;
 import domen.Trening;
 import domen.Trkac;
 import java.util.List;
 import operacija.nivoforme.UcitajNivoFormeSO;
 import operacija.LoginOperacija;
+import operacija.nivoforme.DodajNivoFormeSO;
 import operacija.nivoforme.ObrisiNivoFormeSO;
+import operacija.sertifikat.DodajSertifikatSO;
+import operacija.sertifikat.ObrisiSertifikatSO;
+import operacija.sertifikat.UcitajSertifikateSO;
+import operacija.trener.DodajTreneraSO;
+import operacija.trener.ObrisiTreneraSO;
+import operacija.trener.UcitajTrenereSO;
 import operacija.trening.DodajTreningSO;
 import operacija.trening.ObrisiTreningSO;
 import operacija.trening.UcitajTreningeSO;
+import operacija.trkac.AzurirajTrkacaSO;
 import operacija.trkac.DodajTrkacaSO;
 import operacija.trkac.ObrisiTrkacaSO;
 import operacija.trkac.UcitajTrkaceSO;
@@ -89,6 +98,48 @@ public class Controller {
     public void obrisiNivoForme(NivoForme nf) throws Exception {
         ObrisiNivoFormeSO operacija = new ObrisiNivoFormeSO();
         operacija.izvrsi(nf, null);
+    }
+
+    public void dodajNivoForme(NivoForme nf) throws Exception {
+        DodajNivoFormeSO operacija = new DodajNivoFormeSO();
+        operacija.izvrsi(nf, null);
+    }
+
+    public List<Trener> ucitajTrenere() throws Exception {
+        UcitajTrenereSO operacija = new UcitajTrenereSO();
+        operacija.izvrsi(new Trener(), null);
+        return operacija.getLista();
+    }
+
+    public void obrisiTrenera(Trener trenerZaBrisanje) throws Exception {
+        ObrisiTreneraSO operacija = new ObrisiTreneraSO();
+        operacija.izvrsi(trenerZaBrisanje, null);
+    }
+
+    public void dodajTrenera(Trener noviTrener) throws Exception {
+        DodajTreneraSO operacija = new DodajTreneraSO();
+        operacija.izvrsi(noviTrener, null);
+    }
+
+    public List<Sertifikat> ucitajSertifikate() throws Exception {
+        UcitajSertifikateSO operacija = new UcitajSertifikateSO();
+        operacija.izvrsi(new Sertifikat(), null);
+        return operacija.getLista();
+    }
+
+    public void obrisiSertifikat(Sertifikat s) throws Exception {
+        ObrisiSertifikatSO operacija = new ObrisiSertifikatSO();
+        operacija.izvrsi(s, null);
+    }
+
+    public void dodajSertifikat(Sertifikat ser) throws Exception {
+        DodajSertifikatSO operacija = new DodajSertifikatSO();
+        operacija.izvrsi(ser, null);
+    }
+
+    public void azurirajTrkaca(Trkac trkac) throws Exception {
+        AzurirajTrkacaSO operacija = new AzurirajTrkacaSO();
+        operacija.izvrsi(trkac, null);
     }
 
     

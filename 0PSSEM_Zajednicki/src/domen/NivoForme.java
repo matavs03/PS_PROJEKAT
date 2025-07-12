@@ -25,6 +25,12 @@ public class NivoForme implements ApstraktniDomenskiObjekat{
         this.opis = opis;
     }
 
+    public NivoForme(String opis) {
+        this.opis = opis;
+    }
+    
+    
+
     public int getIdNivoForme() {
         return idNivoForme;
     }

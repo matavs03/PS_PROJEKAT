@@ -32,6 +32,15 @@ public class Trener implements ApstraktniDomenskiObjekat{
         this.password = password;
     }
 
+    public Trener(String ime, String prezime, String username, String password) {
+        this.ime = ime;
+        this.prezime = prezime;
+        this.username = username;
+        this.password = password;
+    }
+    
+    
+
     public int getIdTrener() {
         return idTrener;
     }

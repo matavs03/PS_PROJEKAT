@@ -4,21 +4,34 @@
  */
 package cordinator;
 
+import controller.DodajNivoFormeController;
+import controller.DodajSertifikatController;
+import controller.DodajTreneraController;
 import controller.DodajTreningController;
 import controller.DodajTrkacaController;
 import controller.GlavnaFormaController;
 import controller.LoginController;
 import controller.PrikazNivoaFormeController;
+import controller.PrikazSertifikataController;
 import controller.PrikazTreningaController;
 import controller.PrikazTrkacaController;
+import controller.PrikaziTrenereController;
 import domen.Trener;
+import forme.DodajNivoFormeForma;
+import forme.DodajSertifikatForma;
+import forme.DodajTreneraForma;
 import forme.DodajTreningForma;
 import forme.DodajTrkacaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
 import forme.PrikazNivoaFormeForma;
+import forme.PrikazSertifikataForma;
 import forme.PrikazTreningaForma;
 import forme.PrikazTrkacaForma;
+import forme.PrikaziTreneraForma;
+import forme.mod.FormaMod;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -26,6 +39,8 @@ import forme.PrikazTrkacaForma;
  */
 public class Cordinator {
     private static Cordinator instance;
+    private Map<String, Object> parametri;
+    
     private Trener ulogovani;
     private LoginController loginController;
     private GlavnaFormaController gfController;
@@ -34,9 +49,14 @@ public class Cordinator {
     private PrikazTreningaController ptrController;
     private DodajTreningController dtfController;
     private PrikazNivoaFormeController pnnfController;
+    private DodajNivoFormeController dnfController;
+    private PrikaziTrenereController ptrenereController;
+    private DodajTreneraController dtreneraController;
+    private PrikazSertifikataController psController;
+    private DodajSertifikatController dsController;
     
     private Cordinator(){
-        
+        parametri = new HashMap<>();
     }
     
     public static Cordinator getInstance(){
@@ -70,7 +90,7 @@ public class Cordinator {
 
     public void otvoriDodajTrkacaFormu() {
         dtController = new DodajTrkacaController(new DodajTrkacaForma());
-        dtController.otvoriFormu();
+        dtController.otvoriFormu(FormaMod.DODAJ);
     }
     
     public void otvoriPrikazTreningaFormu() {
@@ -88,8 +108,46 @@ public class Cordinator {
         pnnfController.otvoriFormu();
     }
 
+    public void otvoriDodajNivoFormeFormu() {
+        dnfController = new DodajNivoFormeController(new DodajNivoFormeForma());
+        dnfController.otvoriFormu();
+    }
+
+    public void otvoriPrikaziTrenereFormu() {
+        ptrenereController = new PrikaziTrenereController(new PrikaziTreneraForma());
+        ptrenereController.otvoriFormu();
+    }
+
+    public void otvoriDodajTreneraFormu() {
+        dtreneraController = new DodajTreneraController(new DodajTreneraForma());
+        dtreneraController.otvoriFormu();
+    }
+
+    public void otvoriPrikazSertifikataFormu() {
+        psController = new PrikazSertifikataController(new PrikazSertifikataForma());
+        psController.otvoriFormu();
+    }
     
+    public void otvoriDodajSertifikatFormu(){
+        dsController = new DodajSertifikatController(new DodajSertifikatForma());
+        dsController.otvoriFormu();
+    }
     
+    public void dodajParam(String s, Object o){
+        parametri.put(s, o);
+    }
     
+    public Object vratiParam(String s){
+        return parametri.get(s);
+    }
+
+    public void otvoriIzmeniTrkacaFormu() {
+        dtController = new DodajTrkacaController(new DodajTrkacaForma());
+        dtController.otvoriFormu(FormaMod.IZMENI);
+    }
+
+    public void osveziPrikazTrkacaFormu() {
+        ptController.pripremiFormu();
+    }
     
 }

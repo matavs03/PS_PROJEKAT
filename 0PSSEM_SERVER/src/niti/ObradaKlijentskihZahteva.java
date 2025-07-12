@@ -6,6 +6,7 @@ package niti;
 
 import controller.Controller;
 import domen.NivoForme;
+import domen.Sertifikat;
 import domen.Trener;
 import domen.Trening;
 import domen.Trkac;
@@ -121,10 +122,76 @@ public class ObradaKlijentskihZahteva extends Thread {
                             NivoForme nf = (NivoForme) zahtev.getParametar();
                             Controller.getInstance().obrisiNivoForme(nf);
                             odgovor.setOdgovor(null);
-                        }catch(SQLException sqle){
-                            odgovor.setOdgovor(sqle);
+                        }catch (Exception e) {
+                            odgovor.setOdgovor(e);
                         }
-                        catch (Exception e) {
+                        break;
+                        
+                    case DODAJ_NIVO_FORME:
+                        try {
+                            NivoForme nf = (NivoForme) zahtev.getParametar();
+                            Controller.getInstance().dodajNivoForme(nf);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case UCITAJ_TRENERE:
+                        List<Trener> treneri = Controller.getInstance().ucitajTrenere();
+                        odgovor.setOdgovor(treneri);
+                        break;
+                        
+                    case OBRISI_TRENERA:
+                        Trener trenerZaBrisanje = (Trener) zahtev.getParametar();
+                        try {
+                            Controller.getInstance().obrisiTrenera(trenerZaBrisanje);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case DODAJ_TRENERA:
+                        Trener noviTrener = (Trener) zahtev.getParametar();
+                        try {
+                            Controller.getInstance().dodajTrenera(noviTrener);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                    
+                    case UCITAJ_SERTIFIKATE:
+                        List<Sertifikat> sertifikati = Controller.getInstance().ucitajSertifikate();
+                        odgovor.setOdgovor(sertifikati);
+                        break;
+                        
+                    case OBRISI_SERTIFIKAT:
+                        Sertifikat s = (Sertifikat) zahtev.getParametar();
+                        try {
+                            Controller.getInstance().obrisiSertifikat(s);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                    
+                    case DODAJ_SERTIFIKAT:
+                        Sertifikat ser = (Sertifikat) zahtev.getParametar();
+                        try {
+                            Controller.getInstance().dodajSertifikat(ser);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case AZURIRAJ_TRKACA:
+                        try {
+                            Controller.getInstance().azurirajTrkaca((Trkac) zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
                             odgovor.setOdgovor(e);
                         }
                         break;

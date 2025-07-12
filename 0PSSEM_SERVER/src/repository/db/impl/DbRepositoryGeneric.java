@@ -51,7 +51,7 @@ public class DbRepositoryGeneric implements DbRepository<ApstraktniDomenskiObjek
         String upit = "update "+param.vratiNazivTabele()+" set "+param.vratiVrednostZaIzmenu()+" where "+param.vratiPrimarniKljuc();
         System.out.println(upit);
         Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
-        System.out.println(upit);
+        
         st.executeUpdate(upit);
         st.close();
     }

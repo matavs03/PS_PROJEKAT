@@ -6,6 +6,7 @@ package forme;
 
 import domen.NivoForme;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -55,6 +56,14 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
         return txtPrezime;
     }
 
+    public JButton getBtnAzuriraj() {
+        return btnAzuriraj;
+    }
+
+    public JButton getBtnSacuvaj() {
+        return btnSacuvaj;
+    }
+
     
     
     /**
@@ -75,6 +84,7 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         cbxNivoForme = new javax.swing.JComboBox<>();
         btnSacuvaj = new javax.swing.JButton();
+        btnAzuriraj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,6 +105,8 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
             }
         });
 
+        btnAzuriraj.setText("Ažuriraj");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,7 +114,10 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSacuvaj)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAzuriraj)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSacuvaj))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -138,7 +153,9 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(cbxNivoForme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnSacuvaj)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSacuvaj)
+                    .addComponent(btnAzuriraj))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -155,6 +172,7 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAzuriraj;
     private javax.swing.JButton btnSacuvaj;
     private javax.swing.JComboBox<NivoForme> cbxNivoForme;
     private javax.swing.JLabel jLabel1;
@@ -168,5 +186,9 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
 
     public void addDodajIgracaActionListener(ActionListener actionListener) {
         btnSacuvaj.addActionListener(actionListener);
+    }
+
+    public void addIzmeniActionListener(ActionListener actionListener) {
+        btnAzuriraj.addActionListener(actionListener);
     }
 }
