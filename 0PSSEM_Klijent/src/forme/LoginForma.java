@@ -39,9 +39,9 @@ public class LoginForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("username:");
+        jLabel1.setText("Username:");
 
-        jLabel2.setText("password:");
+        jLabel2.setText("Password:");
 
         txtUsrname.setText("mika03");
 

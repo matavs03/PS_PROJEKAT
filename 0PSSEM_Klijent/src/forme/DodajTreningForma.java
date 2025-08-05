@@ -5,6 +5,7 @@
 package forme;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -29,6 +30,15 @@ public class DodajTreningForma extends javax.swing.JFrame {
         return txtaOpis;
     }
 
+    public JButton getBtnAzuriraj() {
+        return btnAzuriraj;
+    }
+
+    public JButton getBtnDodaj() {
+        return btnDodaj;
+    }
+    
+    
     
     
     /**
@@ -46,6 +56,7 @@ public class DodajTreningForma extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtaOpis = new javax.swing.JTextArea();
         btnDodaj = new javax.swing.JButton();
+        btnAzuriraj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,6 +72,8 @@ public class DodajTreningForma extends javax.swing.JFrame {
 
         btnDodaj.setText("Dodaj");
 
+        btnAzuriraj.setText("Ažuriraj");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -68,7 +81,10 @@ public class DodajTreningForma extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnDodaj)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAzuriraj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDodaj))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -91,7 +107,9 @@ public class DodajTreningForma extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnDodaj)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDodaj)
+                    .addComponent(btnAzuriraj))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -104,6 +122,7 @@ public class DodajTreningForma extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAzuriraj;
     private javax.swing.JButton btnDodaj;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -114,5 +133,9 @@ public class DodajTreningForma extends javax.swing.JFrame {
 
     public void dodajAddActionListener(ActionListener actionListener) {
         btnDodaj.addActionListener(actionListener);
+    }
+
+    public void azurirajAddActionListener(ActionListener actionListener) {
+        btnAzuriraj.addActionListener(actionListener);
     }
 }

@@ -6,6 +6,7 @@ package controller;
 
 import domen.NivoForme;
 import domen.Trkac;
+import forme.DetaljanPrikazTrkacaForma;
 import forme.PrikazTrkacaForma;
 import forme.model.ModelTabeleTrkac;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,7 @@ public class PrikazTrkacaController {
     public PrikazTrkacaController(PrikazTrkacaForma ptf) {
         this.ptf = ptf;
         addActionListeners();
+        ptf.getBtnPretraziTrkaca().setVisible(false);
     }
 
     private void addActionListeners() {
@@ -78,9 +80,31 @@ public class PrikazTrkacaController {
                 String email = ptf.getTxtEmail().getText().strip();
                 NivoForme nf = (NivoForme) ptf.getCbxNivoForme().getSelectedItem();
                 ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
-                mtt.pretrazi(ime, prezime, email, nf);
+                boolean naslo = mtt.pretrazi(ime, prezime, email, nf);
+                ptf.getBtnPretraziTrkaca().setVisible(naslo);
+                
             }
         });
+        
+        ptf.addPretraziTrkacaActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ime = ptf.getTxtIme().getText().strip();
+                String prezime = ptf.getTxtPrezime().getText().strip();
+                String email = ptf.getTxtEmail().getText().strip();
+                NivoForme nf = (NivoForme) ptf.getCbxNivoForme().getSelectedItem();
+                ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
+                Trkac naslo = mtt.pretraziTrkaca(ime, prezime, email, nf);
+                if(naslo!=null){
+                    DetaljanPrikazTrkacaForma dotf = new DetaljanPrikazTrkacaForma(naslo);
+                    dotf.setLocationRelativeTo(null);
+                    dotf.setVisible(true);
+                    ptf.getBtnPretraziTrkaca().setVisible(false);
+                }
+                
+            }
+        });
+        
     }
 
     public void otvoriFormu() {

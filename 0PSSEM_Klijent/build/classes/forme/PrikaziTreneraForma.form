@@ -77,7 +77,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnObreisi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Obrisi"/>
+        <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

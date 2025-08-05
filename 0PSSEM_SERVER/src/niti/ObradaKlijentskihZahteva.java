@@ -195,6 +195,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                             odgovor.setOdgovor(e);
                         }
                         break;
+                        
+                    case AZURIRAJ_TRENING:
+                        try {
+                            Controller.getInstance().azurirajTrening((Trening) zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
                     default:
                         System.out.println("Operacija ne postoji");
                 }

@@ -24,6 +24,7 @@ public class DodajTrkacaController {
     public DodajTrkacaController(DodajTrkacaForma dtf) {
         this.dtf = dtf;
         addActionListeners();
+        
     }
 
     public void pripremiFormu(FormaMod mod) {

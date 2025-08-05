@@ -19,7 +19,8 @@ import javax.swing.table.AbstractTableModel;
 public class ModelTabeleTrkac extends AbstractTableModel {
     private List<Trkac> lista;
     private List<Trkac> kopijaOriginalaLista;
-    private String[] kolone = {"ID Trkaca","Ime","Prezime","E-Mail", "Nivo forme"};
+    List<Trkac> filteredList;
+    private String[] kolone = {"Ime","Prezime"};
 
     public ModelTabeleTrkac(List<Trkac> lista) {
         this.lista = lista;
@@ -54,19 +55,12 @@ public class ModelTabeleTrkac extends AbstractTableModel {
         Trkac t = lista.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return t.getIdTrkac();
-                
-            case 1:
                 return t.getIme();
                 
-            case 2:
+            case 1:
                 return t.getPrezime();
-             
-            case 3:
-                return t.getEmail();
                 
-            case 4:
-                return t.getNivoForme().getOpis();
+            
               
             default:
                 System.out.println("Greska u modelu tabele prikazi trkaca");
@@ -75,8 +69,8 @@ public class ModelTabeleTrkac extends AbstractTableModel {
         
     }
 
-    public void pretrazi(String ime, String prezime, String email, NivoForme nf) {
-        List<Trkac> filteredList = (List<Trkac>) kopijaOriginalaLista.stream()
+    public boolean pretrazi(String ime, String prezime, String email, NivoForme nf) {
+        filteredList = (List<Trkac>) kopijaOriginalaLista.stream()
             .filter(p -> (ime == null || ime.isEmpty() || p.getIme().toLowerCase().contains(ime.toLowerCase())))
             .filter(p -> (prezime == null || prezime.isEmpty() || p.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
             .filter(p -> (email == null || email.isEmpty() || p.getEmail().toLowerCase().contains(email.toLowerCase())))
@@ -84,14 +78,37 @@ public class ModelTabeleTrkac extends AbstractTableModel {
             .collect(Collectors.toList());
         if(filteredList.size()==0){
             JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trkače po zadatim parametrima");
+            return false;
         }
         else{
             JOptionPane.showMessageDialog(null, "Sistem je našao trkače po zadatim parametrima");
             this.lista = filteredList;
             fireTableDataChanged();
+            return true;
         }
 //        this.lista = kopijaOriginalaLista;
         
+    }
+
+    public Trkac pretraziTrkaca(String ime, String prezime, String email, NivoForme nf) {
+        List<Trkac> filteredList = (List<Trkac>) this.filteredList.stream()
+            .filter(p -> (ime == null || ime.isEmpty() || p.getIme().toLowerCase().contains(ime.toLowerCase())))
+            .filter(p -> (prezime == null || prezime.isEmpty() || p.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+            .filter(p -> (email == null || email.isEmpty() || p.getEmail().toLowerCase().contains(email.toLowerCase())))
+            .filter(p -> (nf == null || p.getNivoForme().equals(nf)))
+            .collect(Collectors.toList());
+        if(filteredList.size()==0){
+            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trkača po zadatim parametrima");
+            return null;
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Sistem je našao trkača po zadatim parametrima");
+            List<Trkac> trkac = new ArrayList<>();
+            trkac.add(filteredList.get(0));
+            this.lista = trkac;
+            fireTableDataChanged();
+            return trkac.get(0);
+        }
     }
     
 }

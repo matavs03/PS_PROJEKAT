@@ -20,6 +20,7 @@ import operacija.sertifikat.UcitajSertifikateSO;
 import operacija.trener.DodajTreneraSO;
 import operacija.trener.ObrisiTreneraSO;
 import operacija.trener.UcitajTrenereSO;
+import operacija.trening.AzurirajTreningSO;
 import operacija.trening.DodajTreningSO;
 import operacija.trening.ObrisiTreningSO;
 import operacija.trening.UcitajTreningeSO;
@@ -140,6 +141,11 @@ public class Controller {
     public void azurirajTrkaca(Trkac trkac) throws Exception {
         AzurirajTrkacaSO operacija = new AzurirajTrkacaSO();
         operacija.izvrsi(trkac, null);
+    }
+
+    public void azurirajTrening(Trening trening) throws Exception {
+        AzurirajTreningSO operacija = new AzurirajTreningSO();
+        operacija.izvrsi(trening, null);
     }
 
     

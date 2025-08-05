@@ -237,5 +237,17 @@ public class Komunikacija {
             throw (Exception) odg.getOdgovor();
         }
     }
+
+    public void azurirajTrening(Trening noviTrening) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_TRENING, noviTrening);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
     
 }

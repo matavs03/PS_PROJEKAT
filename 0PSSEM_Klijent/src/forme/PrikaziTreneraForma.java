@@ -56,7 +56,7 @@ public class PrikaziTreneraForma extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblTreneri);
 
-        btnObreisi.setText("Obrisi");
+        btnObreisi.setText("Obriši");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Treneri:");

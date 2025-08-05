@@ -28,5 +28,6 @@ public enum Operacija implements Serializable{
    OBRISI_SERTIFIKAT,
    DODAJ_SERTIFIKAT,
    AZURIRAJ_TRKACA,
+   AZURIRAJ_TRENING,
    
 }

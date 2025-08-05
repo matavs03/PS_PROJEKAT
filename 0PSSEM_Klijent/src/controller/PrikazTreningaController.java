@@ -8,6 +8,7 @@ import domen.Trening;
 import forme.PrikazTreningaForma;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -17,11 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class PrikazTreningaController {
      private final PrikazTreningaForma ptf;
-
+     private List<Trening> listaT;
+     
     public PrikazTreningaController(PrikazTreningaForma ptf) {
         this.ptf = ptf;
         addActionListeners();
-        pripremiFormu();
+        
     }
 
     private void addActionListeners() {
@@ -55,17 +57,57 @@ public class PrikazTreningaController {
                 
             }
         });
+        
+        ptf.azurirajAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Trening t = (Trening) ptf.getCbxTreninzi().getSelectedItem();
+                cordinator.Cordinator.getInstance().dodajParam("trening", t);
+                cordinator.Cordinator.getInstance().otvoriIzmeniTreningFormu();
+            }
+        });
+        
+        ptf.pretraziAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String naziv = ptf.getTxtNaziv().getText().trim();
+                List<Trening> filtrirano = new ArrayList<>();
+                for (Trening trening : listaT) {
+                    if(trening.getNaziv().toLowerCase().contains(naziv.toLowerCase())){
+                        filtrirano.add(trening);
+                    }
+                }
+                if(filtrirano.size()!=0){
+                    JOptionPane.showMessageDialog(null, "Sistem je pronašao treninge po zadatim parametrima");
+                    pripremiFormuFiltered(filtrirano);
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao treninge po zadatim parametrima");
+                    return;
+                }
+                
+            }
+        });
     }
 
-    private void pripremiFormu() {
+    public void pripremiFormu() {
         ptf.getCbxTreninzi().removeAllItems();
         List<Trening> lista = komunikacija.Komunikacija.getInstance().ucitajTreninge();
+        listaT=lista;
         for(Trening t: lista){
+            ptf.getCbxTreninzi().addItem(t);
+        }
+    }
+    
+    public void pripremiFormuFiltered(List<Trening> fil){
+        ptf.getCbxTreninzi().removeAllItems();
+        for(Trening t: fil){
             ptf.getCbxTreninzi().addItem(t);
         }
     }
 
     public void otvoriFormu() {
+        pripremiFormu();
         ptf.setLocationRelativeTo(null);
         ptf.setVisible(true);
     }

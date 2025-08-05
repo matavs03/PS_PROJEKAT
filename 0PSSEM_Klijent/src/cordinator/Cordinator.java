@@ -100,7 +100,7 @@ public class Cordinator {
 
     public void otvoriDodajTreningFormu() {
         dtfController = new DodajTreningController(new DodajTreningForma());
-        dtfController.otvoriFormu();
+        dtfController.otvoriFormu(FormaMod.DODAJ);
     }
 
     public void otvoriPrikazNivoaFormeFormu() {
@@ -148,6 +148,15 @@ public class Cordinator {
 
     public void osveziPrikazTrkacaFormu() {
         ptController.pripremiFormu();
+    }
+
+    public void otvoriIzmeniTreningFormu() {
+        dtfController = new DodajTreningController(new DodajTreningForma());
+        dtfController.otvoriFormu(FormaMod.IZMENI);
+    }
+    
+    public void osveziPrikazTreningaFormu() {
+        ptrController.pripremiFormu();
     }
     
 }

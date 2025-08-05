@@ -6,6 +6,7 @@ package controller;
 
 import domen.Trening;
 import forme.DodajTreningForma;
+import forme.mod.FormaMod;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -23,7 +24,18 @@ public class DodajTreningController {
         addActionListeners();
     }
 
-    public void otvoriFormu() {
+    public void otvoriFormu(FormaMod mod) {
+        if(mod.equals(FormaMod.DODAJ)){
+            dtf.getBtnAzuriraj().setVisible(false);
+            dtf.getBtnDodaj().setVisible(true);
+        }
+        else{
+            dtf.getBtnAzuriraj().setVisible(true);
+            dtf.getBtnDodaj().setVisible(false);
+            Trening t = (Trening) cordinator.Cordinator.getInstance().vratiParam("trening");
+            dtf.getTxtNaziv().setText(t.getNaziv());
+            dtf.getTxtaOpis().setText(t.getOpis());
+        }
         dtf.setLocationRelativeTo(null);
         dtf.setVisible(true);
     }
@@ -40,6 +52,25 @@ public class DodajTreningController {
                 try {
                     komunikacija.Komunikacija.getInstance().dodajTrening(noviTrening);
                     JOptionPane.showMessageDialog(null, "Sistem je zapamtio trening");
+                    dtf.dispose();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti trening");
+                }
+            }
+        });
+        
+        dtf.azurirajAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String naziv = dtf.getTxtNaziv().getText().strip();
+                String opis = dtf.getTxtaOpis().getText().strip();
+                Trening noviTrening = new Trening(naziv, opis);
+                Trening t = (Trening) cordinator.Cordinator.getInstance().vratiParam("trening");
+                noviTrening.setIdTrening(t.getIdTrening());
+                try {
+                    komunikacija.Komunikacija.getInstance().azurirajTrening(noviTrening);
+                    JOptionPane.showMessageDialog(null, "Sistem je zapamtio trening");
+                    cordinator.Cordinator.getInstance().osveziPrikazTreningaFormu();
                     dtf.dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti trening");
