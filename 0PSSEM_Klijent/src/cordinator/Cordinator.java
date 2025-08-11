@@ -4,26 +4,33 @@
  */
 package cordinator;
 
+import controller.DodajEvidencijuTreningaController;
 import controller.DodajNivoFormeController;
 import controller.DodajSertifikatController;
+import controller.DodajStavkuEvidencijeTreningaController;
 import controller.DodajTreneraController;
 import controller.DodajTreningController;
 import controller.DodajTrkacaController;
 import controller.GlavnaFormaController;
 import controller.LoginController;
+import controller.PrikazEvidencijaTreningaController;
 import controller.PrikazNivoaFormeController;
 import controller.PrikazSertifikataController;
 import controller.PrikazTreningaController;
 import controller.PrikazTrkacaController;
 import controller.PrikaziTrenereController;
+import domen.StavkaEvidencijeTreninga;
 import domen.Trener;
+import forme.DodajEvidencijuTreningaForma;
 import forme.DodajNivoFormeForma;
 import forme.DodajSertifikatForma;
+import forme.DodajStavkuEvidencijeTreningaForma;
 import forme.DodajTreneraForma;
 import forme.DodajTreningForma;
 import forme.DodajTrkacaForma;
 import forme.GlavnaForma;
 import forme.LoginForma;
+import forme.PrikazEvidencijaTreningaForma;
 import forme.PrikazNivoaFormeForma;
 import forme.PrikazSertifikataForma;
 import forme.PrikazTreningaForma;
@@ -31,6 +38,7 @@ import forme.PrikazTrkacaForma;
 import forme.PrikaziTreneraForma;
 import forme.mod.FormaMod;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,6 +62,9 @@ public class Cordinator {
     private DodajTreneraController dtreneraController;
     private PrikazSertifikataController psController;
     private DodajSertifikatController dsController;
+    private PrikazEvidencijaTreningaController petController;
+    private DodajEvidencijuTreningaController detController;
+    private DodajStavkuEvidencijeTreningaController dsetController;
     
     private Cordinator(){
         parametri = new HashMap<>();
@@ -110,7 +121,7 @@ public class Cordinator {
 
     public void otvoriDodajNivoFormeFormu() {
         dnfController = new DodajNivoFormeController(new DodajNivoFormeForma());
-        dnfController.otvoriFormu();
+        dnfController.otvoriFormu(FormaMod.DODAJ);
     }
 
     public void otvoriPrikaziTrenereFormu() {
@@ -120,7 +131,7 @@ public class Cordinator {
 
     public void otvoriDodajTreneraFormu() {
         dtreneraController = new DodajTreneraController(new DodajTreneraForma());
-        dtreneraController.otvoriFormu();
+        dtreneraController.otvoriFormu(FormaMod.DODAJ);
     }
 
     public void otvoriPrikazSertifikataFormu() {
@@ -130,7 +141,7 @@ public class Cordinator {
     
     public void otvoriDodajSertifikatFormu(){
         dsController = new DodajSertifikatController(new DodajSertifikatForma());
-        dsController.otvoriFormu();
+        dsController.otvoriFormu(FormaMod.DODAJ);
     }
     
     public void dodajParam(String s, Object o){
@@ -157,6 +168,61 @@ public class Cordinator {
     
     public void osveziPrikazTreningaFormu() {
         ptrController.pripremiFormu();
+    }
+
+    public void otvoriIzmeniNivoFormeFormu() {
+        dnfController = new DodajNivoFormeController(new DodajNivoFormeForma());
+        dnfController.otvoriFormu(FormaMod.IZMENI);
+    }
+    
+    public void osveziPrikazNivoaFormiFormu() {
+        pnnfController.pripremiFormu();
+    }
+
+    public void otvoriIzmeniTreneraFormu() {
+        dtreneraController = new DodajTreneraController(new DodajTreneraForma());
+        dtreneraController.otvoriFormu(FormaMod.IZMENI);
+    }
+
+    public void osveziPrikazTreneraFormu() {
+        ptrenereController.pripremiFormu();
+    }
+
+    public void otvoriIzmeniSertifikatFormu() {
+        dsController = new DodajSertifikatController(new DodajSertifikatForma());
+        dsController.otvoriFormu(FormaMod.IZMENI);
+    }
+    
+    public void osveziPrikazSertifikataFormu() {
+        psController.pripremiFormu();
+    }
+    
+    public void otvoriPrikazEvidencijaTreningaFormu(){
+        petController = new PrikazEvidencijaTreningaController(new PrikazEvidencijaTreningaForma());
+        petController.otvoriFormu();
+    }
+    
+    public void otvoriDodajEvidencijuTreningaFormu(){
+        detController = new DodajEvidencijuTreningaController(new DodajEvidencijuTreningaForma());
+        detController.otvoriFormu(FormaMod.DODAJ);
+    }
+
+    public void otvoriIzmeniEvidencijuTreningaFormu() {
+        detController = new DodajEvidencijuTreningaController(new DodajEvidencijuTreningaForma());
+        detController.otvoriFormu(FormaMod.IZMENI);
+    }
+
+    public void osveziPrikazEvidencijeTreningaFormu() {
+        petController.pripremiFormu();
+    }
+
+    public void otvoriDodajStavkuEvidencijeTreningaFormu() {
+        dsetController = new DodajStavkuEvidencijeTreningaController(new DodajStavkuEvidencijeTreningaForma());
+        dsetController.otvoriFormu(FormaMod.DODAJ);
+    }
+
+    public void osveziPrikazStavki(List<StavkaEvidencijeTreninga> stavke) {
+        petController.osveziTabeluStavki(stavke);
     }
     
 }

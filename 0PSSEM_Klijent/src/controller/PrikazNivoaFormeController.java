@@ -10,6 +10,7 @@ import forme.model.ModelTabeleNivoiForme;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -20,6 +21,9 @@ import javax.swing.JOptionPane;
 public class PrikazNivoaFormeController {
 
     private final PrikazNivoaFormeForma pnnf;
+
+    List<NivoForme> nivoi;
+    List<NivoForme> nivoiFilter;
 
     public PrikazNivoaFormeController(PrikazNivoaFormeForma pnnf) {
         this.pnnf = pnnf;
@@ -32,9 +36,10 @@ public class PrikazNivoaFormeController {
         pnnf.setVisible(true);
     }
 
-    private void pripremiFormu() {
-        List<NivoForme> nivoi = komunikacija.Komunikacija.getInstance().ucitajNivoeForme();
+    public void pripremiFormu() {
+        nivoi = komunikacija.Komunikacija.getInstance().ucitajNivoeForme();
         pnnf.getjTable1().setModel(new ModelTabeleNivoiForme(nivoi));
+        pnnf.getBtnPretraziNivo().setVisible(false);
     }
 
     private void addActionListeners() {
@@ -53,12 +58,80 @@ public class PrikazNivoaFormeController {
                             komunikacija.Komunikacija.getInstance().obrisiNivoForme(nf);
                             JOptionPane.showMessageDialog(null, "Sistem je obrisao nivo forme");
                             pripremiFormu();
-                        }catch (Exception ex) {
+                        } catch (Exception ex) {
                             JOptionPane.showMessageDialog(null, "Sistem ne može da obriše nivo forme");
                         }
                     }
                 }
             }
         });
+
+        pnnf.pretraziAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String rec = pnnf.getTxtPretrazi().getText().toLowerCase().strip();
+                nivoiFilter = new ArrayList<>();
+                for (NivoForme nivoForme : nivoi) {
+                    if (nivoForme.getOpis().toLowerCase().contains(rec)) {
+                        nivoiFilter.add(nivoForme);
+                    }
+                }
+                if (nivoiFilter.size() != 0) {
+                    JOptionPane.showMessageDialog(null, "Sistem je pronašao nivoe forme po zadatim parametrima");
+                    pripremiFormuFiltered(nivoiFilter);
+                    pnnf.getBtnPretraziNivo().setVisible(true);
+                    if (rec.equals("")) {
+                        pnnf.getBtnPretraziNivo().setVisible(false);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao nivoe forme po zadatim parametrima");
+                    pnnf.getBtnPretraziNivo().setVisible(false);
+                }
+            }
+
+        });
+
+        pnnf.pretraziNivoAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String rec = pnnf.getTxtPretrazi().getText().toLowerCase().strip();
+                nivoiFilter = new ArrayList<>();
+                for (NivoForme nivoForme : nivoi) {
+                    if (nivoForme.getOpis().toLowerCase().contains(rec)) {
+                        nivoiFilter.add(nivoForme);
+                        break;
+                    }
+                }
+                if (nivoiFilter.size() != 0) {
+                    JOptionPane.showMessageDialog(null, "Sistem je pronašao nivo forme po zadatim parametrima");
+                    pripremiFormuFiltered(nivoiFilter);
+                    if (rec.equals("")) {
+                        pnnf.getBtnPretraziNivo().setVisible(false);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao nivo forme po zadatim parametrima");
+                }
+            }
+        });
+
+        pnnf.izmeniAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = pnnf.getjTable1().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste izabrali red");
+                    return;
+                } else {
+                    ModelTabeleNivoiForme mtnf = (ModelTabeleNivoiForme) pnnf.getjTable1().getModel();
+                    NivoForme nf = mtnf.getLista().get(red);
+                    cordinator.Cordinator.getInstance().dodajParam("nivoForme", nf);
+                    cordinator.Cordinator.getInstance().otvoriIzmeniNivoFormeFormu();
+                }
+            }
+        });
+    }
+
+    private void pripremiFormuFiltered(List<NivoForme> nivoiFiltered) {
+        pnnf.getjTable1().setModel(new ModelTabeleNivoiForme(nivoiFiltered));
     }
 }

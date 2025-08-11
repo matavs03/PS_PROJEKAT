@@ -4,8 +4,10 @@
  */
 package komunikacija;
 
+import domen.EvidencijaTreninga;
 import domen.NivoForme;
 import domen.Sertifikat;
+import domen.StavkaEvidencijeTreninga;
 import domen.Trener;
 import domen.Trening;
 import domen.Trkac;
@@ -240,6 +242,108 @@ public class Komunikacija {
 
     public void azurirajTrening(Trening noviTrening) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_TRENING, noviTrening);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    
+
+    public void azurirajNivoForme(NivoForme nf) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_NIVO_FORME, nf);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void azurirajTrenera(Trener t) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_TRENERA, t);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void azurirajSertifikat(Sertifikat s) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_SERTIFIKAT, s);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public List<EvidencijaTreninga> ucitajEvidencijeTreninga() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_EVIDENCIJE_TRENINGA, null);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        List<EvidencijaTreninga> lista = (List<EvidencijaTreninga>) odg.getOdgovor();
+        return lista;
+    }
+
+    public List<StavkaEvidencijeTreninga> ucitajStavkeEvidencijeTreninga(int idEvidencijaTreninga) {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_STAVKE_EVIDENCIJE_TRENINGA, idEvidencijaTreninga);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        List<StavkaEvidencijeTreninga> lista = (List<StavkaEvidencijeTreninga>) odg.getOdgovor();
+        return lista;
+    }
+
+    public void obrisiEvidencijuTreninga(EvidencijaTreninga et) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_EVIDENCIJU_TRENINGA, et);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void dodajEvidencijuTreninga(EvidencijaTreninga et) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_EVIDENCIJU_TRENINGA, et);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void azurirajEvidencijuTreninga(EvidencijaTreninga et) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_EVIDENCIJU_TRENINGA, et);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void dodajStavkuEvidencijeTreninga(StavkaEvidencijeTreninga stavka) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_STAVKU_EVIDENCIJE_TRENINGA, stavka);
         pos.posalji(zahtev);
         Odgovor odg = (Odgovor) prim.primi();
         if(odg.getOdgovor()==null){

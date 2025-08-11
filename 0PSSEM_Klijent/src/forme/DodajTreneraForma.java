@@ -5,6 +5,8 @@
 package forme;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -36,6 +38,19 @@ public class DodajTreneraForma extends javax.swing.JFrame {
     public JTextField getTxtUsername() {
         return txtUsername;
     }
+
+    public JButton getBtnDodaj() {
+        return btnDodaj;
+    }
+
+    public JButton getBtnAzuriraj() {
+        return btnAzuriraj;
+    }
+
+    public JLabel getLblpass() {
+        return lblpass;
+    }
+    
     
     
 
@@ -52,12 +67,13 @@ public class DodajTreneraForma extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblpass = new javax.swing.JLabel();
         txtIme = new javax.swing.JTextField();
         txtPrezime = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         passPassword = new javax.swing.JPasswordField();
         btnDodaj = new javax.swing.JButton();
+        btnAzuriraj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -70,9 +86,11 @@ public class DodajTreneraForma extends javax.swing.JFrame {
 
         jLabel4.setText("Username:");
 
-        jLabel5.setText("Password:");
+        lblpass.setText("Password:");
 
         btnDodaj.setText("Dodaj");
+
+        btnAzuriraj.setText("Ažuriraj");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,12 +108,15 @@ public class DodajTreneraForma extends javax.swing.JFrame {
                             .addComponent(txtPrezime)
                             .addComponent(txtIme)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnDodaj)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnAzuriraj)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnDodaj))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel4)
-                                .addComponent(jLabel5))
+                                .addComponent(lblpass))
                             .addGap(184, 184, 184)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
@@ -123,10 +144,12 @@ public class DodajTreneraForma extends javax.swing.JFrame {
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(lblpass)
                     .addComponent(passPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnDodaj)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDodaj)
+                    .addComponent(btnAzuriraj))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -139,12 +162,13 @@ public class DodajTreneraForma extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAzuriraj;
     private javax.swing.JButton btnDodaj;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblpass;
     private javax.swing.JPasswordField passPassword;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtPrezime;
@@ -153,5 +177,9 @@ public class DodajTreneraForma extends javax.swing.JFrame {
 
     public void dodajAddActionListener(ActionListener actionListener) {
         btnDodaj.addActionListener(actionListener);
+    }
+
+    public void izmeniAddActionListener(ActionListener actionListener) {
+        btnAzuriraj.addActionListener(actionListener);
     }
 }

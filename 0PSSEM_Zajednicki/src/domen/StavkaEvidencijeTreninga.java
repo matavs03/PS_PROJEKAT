@@ -5,6 +5,8 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +15,8 @@ import java.util.Objects;
  *
  * @author MataVS
  */
-public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat{
+public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
+
     private EvidencijaTreninga evidencija;
     private int rb;
     private Date datumPrisustva;
@@ -73,7 +76,7 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
-        return "1."+String.valueOf(rb)+" datum: "+datumPrisustva+" trening: "+trening.getNaziv();
+        return "StavkaEvidencijeTreninga{" + "evidencija=" + evidencija.getIdEvidencijaTreninga() + ", rb=" + rb + ", datumPrisustva=" + datumPrisustva + ", ocena=" + ocena + ", trening=" + trening.getNaziv() + '}';
     }
 
     @Override
@@ -116,7 +119,31 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat{
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+
+            int idEvidencija = rs.getInt("stavkaevidencijetreninga.evidencija");
+            EvidencijaTreninga evidencija1 = new EvidencijaTreninga();
+            evidencija1.setIdEvidencijaTreninga(idEvidencija);
+
+            int idTrening = rs.getInt("trening.idTrening");
+            String nazivTreninga = rs.getString("trening.naziv");
+
+            Trening trening1 = new Trening();
+            trening1.setIdTrening(idTrening);
+            trening1.setNaziv(nazivTreninga);
+
+            int rb1 = rs.getInt("stavkaevidencijetreninga.rb");
+            Date datumPrisustva1 = rs.getDate("stavkaevidencijetreninga.datumPrisustva");
+            int ocena1 = rs.getInt("stavkaevidencijetreninga.ocena");
+
+            StavkaEvidencijeTreninga stavka = new StavkaEvidencijeTreninga(evidencija1, rb1, datumPrisustva1, ocena1, trening1);
+
+            lista.add(stavka);
+        }
+
+        return lista;
     }
 
     @Override
@@ -126,12 +153,20 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return rb+","+evidencija.getIdEvidencijaTreninga()+",'"+datumPrisustva+"',"+ocena+","+trening.getIdTrening();
+//        return rb+","+evidencija.getIdEvidencijaTreninga()+",'"+datumPrisustva+"',"+ocena+","+trening.getIdTrening();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // format za DATE
+        String datumPrisustvaStr = "'" + sdf.format(datumPrisustva) + "'";
+
+        return rb + ", "
+                + evidencija.getIdEvidencijaTreninga() + ", "
+                + datumPrisustvaStr + ", "
+                + ocena + ", "
+                + trening.getIdTrening();
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        return "stavkaevidencijetreninga.rb="+rb+" AND "+"stavkaevidencijetreninga.evidencija="+evidencija.getIdEvidencijaTreninga();
+        return "stavkaevidencijetreninga.rb=" + rb + " AND " + "stavkaevidencijetreninga.evidencija=" + evidencija.getIdEvidencijaTreninga();
     }
 
     @Override
@@ -141,8 +176,7 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "datumPrisustva='"+datumPrisustva+"',ocena="+ocena+",trening="+trening.getIdTrening();
+        return "datumPrisustva='" + datumPrisustva + "',ocena=" + ocena + ",trening=" + trening.getIdTrening();
     }
-    
-    
+
 }

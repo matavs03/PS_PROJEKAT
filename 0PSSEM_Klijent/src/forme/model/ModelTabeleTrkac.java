@@ -91,7 +91,7 @@ public class ModelTabeleTrkac extends AbstractTableModel {
     }
 
     public Trkac pretraziTrkaca(String ime, String prezime, String email, NivoForme nf) {
-        List<Trkac> filteredList = (List<Trkac>) this.filteredList.stream()
+        filteredList = (List<Trkac>) this.filteredList.stream()
             .filter(p -> (ime == null || ime.isEmpty() || p.getIme().toLowerCase().contains(ime.toLowerCase())))
             .filter(p -> (prezime == null || prezime.isEmpty() || p.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
             .filter(p -> (email == null || email.isEmpty() || p.getEmail().toLowerCase().contains(email.toLowerCase())))

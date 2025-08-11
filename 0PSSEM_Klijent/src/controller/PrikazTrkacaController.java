@@ -68,10 +68,10 @@ public class PrikazTrkacaController {
                 Trkac t = mtt.getLista().get(red);
                 cordinator.Cordinator.getInstance().dodajParam("trkac", t);
                 cordinator.Cordinator.getInstance().otvoriIzmeniTrkacaFormu();
-               
+
             }
         });
-        
+
         ptf.addPretraziActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -81,11 +81,15 @@ public class PrikazTrkacaController {
                 NivoForme nf = (NivoForme) ptf.getCbxNivoForme().getSelectedItem();
                 ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
                 boolean naslo = mtt.pretrazi(ime, prezime, email, nf);
-                ptf.getBtnPretraziTrkaca().setVisible(naslo);
-                
+                if (ime.equals("") && prezime.equals("") && email.equals("") && nf == null) {
+                    ptf.getBtnPretraziTrkaca().setVisible(false);
+                } else {
+                    ptf.getBtnPretraziTrkaca().setVisible(naslo);
+                }
+
             }
         });
-        
+
         ptf.addPretraziTrkacaActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,16 +99,35 @@ public class PrikazTrkacaController {
                 NivoForme nf = (NivoForme) ptf.getCbxNivoForme().getSelectedItem();
                 ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
                 Trkac naslo = mtt.pretraziTrkaca(ime, prezime, email, nf);
-                if(naslo!=null){
+                if (naslo != null) {
+                    if (ime.equals("") && prezime.equals("") && email.equals("") && nf == null) {
+                        ptf.getBtnPretraziTrkaca().setVisible(false);
+                    }
                     DetaljanPrikazTrkacaForma dotf = new DetaljanPrikazTrkacaForma(naslo);
                     dotf.setLocationRelativeTo(null);
                     dotf.setVisible(true);
-                    ptf.getBtnPretraziTrkaca().setVisible(false);
+//                    ptf.getBtnPretraziTrkaca().setVisible(false);
                 }
-                
+
             }
         });
-        
+
+        ptf.detaljiAddactionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = ptf.getTblTrkaci().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste izabrali red");
+                    return;
+                }
+                ModelTabeleTrkac mtt = (ModelTabeleTrkac) ptf.getTblTrkaci().getModel();
+                Trkac t = mtt.getLista().get(red);
+                DetaljanPrikazTrkacaForma dotf = new DetaljanPrikazTrkacaForma(t);
+                dotf.setLocationRelativeTo(null);
+                dotf.setVisible(true);
+            }
+        });
+
     }
 
     public void otvoriFormu() {
@@ -122,6 +145,7 @@ public class PrikazTrkacaController {
             ptf.getCbxNivoForme().addItem(nivoForme);
         }
         ptf.getCbxNivoForme().setSelectedItem(null);
+        ptf.getBtnPretraziTrkaca().setVisible(false);
     }
 
 }

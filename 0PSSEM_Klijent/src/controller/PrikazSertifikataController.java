@@ -19,20 +19,21 @@ import javax.swing.JOptionPane;
  * @author lazar
  */
 public class PrikazSertifikataController {
+
     private final PrikazSertifikataForma psf;
 
     public PrikazSertifikataController(PrikazSertifikataForma psf) {
         this.psf = psf;
         addActionListeners();
     }
-    
-    public void pripremiFormu(){
+
+    public void pripremiFormu() {
         List<Sertifikat> lista = komunikacija.Komunikacija.getInstance().ucitajSertifikate();
         ModeltabeleSertifikati mts = new ModeltabeleSertifikati(lista);
         psf.getTblSertifikati().setModel(mts);
     }
-    
-    public void otvoriFormu(){
+
+    public void otvoriFormu() {
         pripremiFormu();
         psf.setLocationRelativeTo(null);
         psf.setVisible(true);
@@ -43,15 +44,14 @@ public class PrikazSertifikataController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int red = psf.getTblSertifikati().getSelectedRow();
-                if(red==-1){
-                        JOptionPane.showMessageDialog(null, "Odaberite red");
-                        return;
-                    }
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Odaberite red");
+                    return;
+                }
                 int potvrda = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da obrišete sertifikat?");
-                
-                if(potvrda==JOptionPane.YES_OPTION){
-                    
-                    
+
+                if (potvrda == JOptionPane.YES_OPTION) {
+
                     ModeltabeleSertifikati mts = (ModeltabeleSertifikati) psf.getTblSertifikati().getModel();
                     Sertifikat s = mts.getLista().get(red);
                     try {
@@ -61,10 +61,52 @@ public class PrikazSertifikataController {
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Sistem ne može da obriše sertifikat");
                     }
-                }
-                else{
+                } else {
                     return;
                 }
+            }
+        });
+
+        psf.pretraziAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String naziv = psf.getTxtNaziv().getText().strip();
+                String inst = psf.getTxtInstitucija().getText().strip();
+                ModeltabeleSertifikati mtt = (ModeltabeleSertifikati) psf.getTblSertifikati().getModel();
+                boolean naslo = mtt.pretrazi(naziv, inst);
+                if (naziv.equals("") && inst.equals("")) {
+                    psf.getBtnPretraziSertifikat().setVisible(false);
+                } else {
+                    psf.getBtnPretraziSertifikat().setVisible(naslo);
+                }
+            }
+        });
+
+        psf.pretraziSertifikatAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String naziv = psf.getTxtNaziv().getText().strip();
+                String inst = psf.getTxtInstitucija().getText().strip();
+                ModeltabeleSertifikati mtt = (ModeltabeleSertifikati) psf.getTblSertifikati().getModel();
+                Sertifikat naslo = mtt.pretraziSertifikat(naziv, inst);
+                if (naziv.equals("") && inst.equals("")) {
+                    psf.getBtnPretraziSertifikat().setVisible(false);
+                }
+            }
+        });
+
+        psf.izmeniAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = psf.getTblSertifikati().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste odabrali red");
+                    return;
+                }
+                ModeltabeleSertifikati mts = (ModeltabeleSertifikati) psf.getTblSertifikati().getModel();
+                Sertifikat s = mts.getLista().get(red);
+                cordinator.Cordinator.getInstance().dodajParam("sertifikat", s);
+                cordinator.Cordinator.getInstance().otvoriIzmeniSertifikatFormu();
             }
         });
     }

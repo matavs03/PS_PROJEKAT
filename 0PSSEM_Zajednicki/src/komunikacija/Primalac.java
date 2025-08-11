@@ -26,7 +26,7 @@ public class Primalac {
             ObjectInputStream in = new ObjectInputStream(soket.getInputStream());
             return in.readObject();
         } catch (IOException ex) {
-            ex.printStackTrace();
+            System.out.println("IOSExeption: zatvorena konekcija sa klijentom");
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
         }

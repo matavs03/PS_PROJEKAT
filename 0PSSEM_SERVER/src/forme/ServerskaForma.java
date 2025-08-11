@@ -18,7 +18,7 @@ public class ServerskaForma extends javax.swing.JFrame {
     public ServerskaForma() {
         initComponents();
         
-        lblStatus.setText("");
+        lblStatus.setText("Zaustavljen");
         btnZaustaviServer.setEnabled(false);
     }
 

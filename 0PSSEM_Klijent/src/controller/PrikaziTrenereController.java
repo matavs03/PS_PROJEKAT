@@ -5,10 +5,12 @@
 package controller;
 
 import domen.Trener;
+import forme.DetaljanPrikazTreneraForma;
 import forme.PrikaziTreneraForma;
 import forme.model.ModelTabeleTrener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.CodingErrorAction;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -51,6 +53,76 @@ public class PrikaziTrenereController {
                     }
                     
                 }
+            }
+        });
+        
+        ptf.pretraziAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ime = ptf.getTxtIme().getText().strip();
+                String prezime = ptf.getTxtPrezime().getText().strip();
+                String user = ptf.getTxtUser().getText().strip();
+                ModelTabeleTrener mtt = (ModelTabeleTrener) ptf.getTblTreneri().getModel();
+                boolean naslo = mtt.pretrazi(ime, prezime, user);
+                if(ime.equals("") && prezime.equals("") && user.equals("")){
+                    ptf.getBtnPretraziTrenera().setVisible(false);
+                }
+                else{
+                    ptf.getBtnPretraziTrenera().setVisible(naslo);
+                }
+            }
+        });
+        
+        ptf.addPretraziTreneraActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String ime = ptf.getTxtIme().getText().strip();
+                String prezime = ptf.getTxtPrezime().getText().strip();
+                String user = ptf.getTxtUser().getText().strip();
+                
+                ModelTabeleTrener mtt = (ModelTabeleTrener) ptf.getTblTreneri().getModel();
+                Trener naslo = mtt.pretraziTrenera(ime, prezime, user);
+                if(ime.equals("") && prezime.equals("") && user.equals("")){
+                    ptf.getBtnPretraziTrenera().setVisible(false);
+                }
+                if(naslo!=null){
+                    DetaljanPrikazTreneraForma dotf = new DetaljanPrikazTreneraForma(naslo);
+                    dotf.setLocationRelativeTo(null);
+                    dotf.setVisible(true);
+//                    ptf.getBtnPretraziTrkaca().setVisible(false);
+                }
+                
+            }
+        });
+        
+        ptf.addIzmeniActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = ptf.getTblTreneri().getSelectedRow();
+                if(red == -1){
+                    JOptionPane.showMessageDialog(null, "Niste odabrali red");
+                    return;
+                }
+                ModelTabeleTrener mtt = (ModelTabeleTrener) ptf.getTblTreneri().getModel();
+                Trener t = mtt.getLista().get(red);
+                cordinator.Cordinator.getInstance().dodajParam("trener", t);
+                cordinator.Cordinator.getInstance().otvoriIzmeniTreneraFormu();
+            }
+        });
+        
+        ptf.detaljiAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = ptf.getTblTreneri().getSelectedRow();
+                if(red == -1){
+                    JOptionPane.showMessageDialog(null, "Niste odabrali red");
+                    return;
+                }
+                ModelTabeleTrener mtt = (ModelTabeleTrener) ptf.getTblTreneri().getModel();
+                Trener t = mtt.getLista().get(red);
+                DetaljanPrikazTreneraForma dotf = new DetaljanPrikazTreneraForma(t);
+                    dotf.setLocationRelativeTo(null);
+                    dotf.setVisible(true);
             }
         });
     }

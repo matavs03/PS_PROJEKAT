@@ -83,6 +83,7 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cbxNivoForme = new javax.swing.JComboBox<>();
         btnPretraziTrkaca = new javax.swing.JButton();
+        btnDetalji = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,7 +105,7 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
 
         btnObrisi.setText("Obriši");
 
-        btnAzuriraj.setText("Ažuriraj");
+        btnAzuriraj.setText("Izmeni");
 
         jLabel2.setText("Ime:");
 
@@ -112,7 +113,7 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
 
         jLabel4.setText("E-mail:");
 
-        btnPretrazi.setText("Pretraži");
+        btnPretrazi.setText("Pretraži trkače");
 
         jLabel5.setText("Nivo forme:");
 
@@ -122,6 +123,8 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
                 btnPretraziTrkacaActionPerformed(evt);
             }
         });
+
+        btnDetalji.setText("Detalji");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -158,11 +161,15 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
                                     .addComponent(cbxNivoForme, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAzuriraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnPretraziTrkaca)
-                            .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnAzuriraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnPretraziTrkaca)
+                                    .addComponent(btnDetalji))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -186,10 +193,12 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
                     .addComponent(cbxNivoForme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(btnAzuriraj, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(85, 85, 85)
+                        .addComponent(btnDetalji)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnObrisi)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAzuriraj))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -210,6 +219,7 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAzuriraj;
+    private javax.swing.JButton btnDetalji;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPretrazi;
     private javax.swing.JButton btnPretraziTrkaca;
@@ -241,6 +251,10 @@ public class PrikazTrkacaForma extends javax.swing.JFrame {
 
     public void addPretraziTrkacaActionListener(ActionListener actionListener) {
         btnPretraziTrkaca.addActionListener(actionListener);
+    }
+
+    public void detaljiAddactionListener(ActionListener actionListener) {
+        btnDetalji.addActionListener(actionListener);
     }
 
 

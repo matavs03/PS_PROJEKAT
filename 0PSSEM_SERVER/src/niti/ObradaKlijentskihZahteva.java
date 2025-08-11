@@ -5,8 +5,10 @@
 package niti;
 
 import controller.Controller;
+import domen.EvidencijaTreninga;
 import domen.NivoForme;
 import domen.Sertifikat;
+import domen.StavkaEvidencijeTreninga;
 import domen.Trener;
 import domen.Trening;
 import domen.Trkac;
@@ -43,8 +45,11 @@ public class ObradaKlijentskihZahteva extends Thread {
     public void run() {
         try {
             while (!kraj) {
-
+                
                 Zahtev zahtev = (Zahtev) prim.primi();
+                if(zahtev==null){
+                    return;
+                }
                 System.out.println("KLASA OKZ(PARAMETAR OD KLIJENTA): " + zahtev.getParametar());
                 System.out.println("KLASA OKZ(OPERACIJA OD KLIJENTA): " + zahtev.getOperacija());
 
@@ -199,6 +204,79 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case AZURIRAJ_TRENING:
                         try {
                             Controller.getInstance().azurirajTrening((Trening) zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case AZURIRAJ_NIVO_FORME:
+                        try {
+                            Controller.getInstance().azurirajNivoForme((NivoForme)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case AZURIRAJ_TRENERA:
+                        try {
+                            Controller.getInstance().azurirajTrenera((Trener)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case AZURIRAJ_SERTIFIKAT:
+                        try {
+                            Controller.getInstance().azurirajSertifikat((Sertifikat)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case UCITAJ_EVIDENCIJE_TRENINGA:
+                        List<EvidencijaTreninga> evidencije = Controller.getInstance().ucitajEvidencijeTreninga();
+                        odgovor.setOdgovor(evidencije);
+                        break;
+                        
+                    case UCITAJ_STAVKE_EVIDENCIJE_TRENINGA:
+                        List<StavkaEvidencijeTreninga> stavke = Controller.getInstance().ucitajStavkeEvidencijeTreninga((int)zahtev.getParametar());
+                        odgovor.setOdgovor(stavke);
+                        break;
+                        
+                    case OBRISI_EVIDENCIJU_TRENINGA:
+                        try {
+                            Controller.getInstance().obrisiEvidencijuTreninga((EvidencijaTreninga)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case DODAJ_EVIDENCIJU_TRENINGA:
+                        try {
+                            Controller.getInstance().dodajEvidencijuTreninga((EvidencijaTreninga)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case AZURIRAJ_EVIDENCIJU_TRENINGA:
+                        try {
+                            Controller.getInstance().azurirajEvidencijuTreninga((EvidencijaTreninga)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case DODAJ_STAVKU_EVIDENCIJE_TRENINGA:
+                        try {
+                            Controller.getInstance().dodajStavkuEvidencijeTreninga((StavkaEvidencijeTreninga)zahtev.getParametar());
                             odgovor.setOdgovor(null);
                         } catch (Exception e) {
                             odgovor.setOdgovor(e);

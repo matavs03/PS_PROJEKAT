@@ -5,6 +5,7 @@
 package forme;
 
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 /**
@@ -24,7 +25,16 @@ public class DodajNivoFormeForma extends javax.swing.JFrame {
     public JTextField getTxtNaziv() {
         return txtNaziv;
     }
+
+    public JButton getBtnAzuriraj() {
+        return btnAzuriraj;
+    }
+
+    public JButton getBtnDodaj() {
+        return btnDodaj;
+    }
      
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,12 +48,15 @@ public class DodajNivoFormeForma extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtNaziv = new javax.swing.JTextField();
         btnDodaj = new javax.swing.JButton();
+        btnAzuriraj = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Unesite naziv nivoa forme:");
 
         btnDodaj.setText("Dodaj");
+
+        btnAzuriraj.setText("Ažuriraj");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,10 +68,13 @@ public class DodajNivoFormeForma extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNaziv, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+                        .addComponent(txtNaziv, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnDodaj)))
+                        .addComponent(btnAzuriraj)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDodaj)
+                        .addGap(12, 12, 12)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -69,7 +85,9 @@ public class DodajNivoFormeForma extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnDodaj)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDodaj)
+                    .addComponent(btnAzuriraj))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -82,6 +100,7 @@ public class DodajNivoFormeForma extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAzuriraj;
     private javax.swing.JButton btnDodaj;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField txtNaziv;
@@ -89,5 +108,9 @@ public class DodajNivoFormeForma extends javax.swing.JFrame {
 
     public void dodajAddActionListener(ActionListener actionListener) {
         btnDodaj.addActionListener(actionListener);
+    }
+
+    public void azurirajAddActionListener(ActionListener actionListener) {
+        btnAzuriraj.addActionListener(actionListener);
     }
 }

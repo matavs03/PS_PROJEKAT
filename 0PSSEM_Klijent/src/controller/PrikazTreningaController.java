@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 public class PrikazTreningaController {
      private final PrikazTreningaForma ptf;
      private List<Trening> listaT;
+     List<Trening> filtrirano;
      
     public PrikazTreningaController(PrikazTreningaForma ptf) {
         this.ptf = ptf;
@@ -52,9 +53,7 @@ public class PrikazTreningaController {
                     } catch (Exception ex) {
                         JOptionPane.showMessageDialog(null, "Sistem ne može da obriše trening");
                     }
-                }
-                
-                
+                }  
             }
         });
         
@@ -71,7 +70,7 @@ public class PrikazTreningaController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String naziv = ptf.getTxtNaziv().getText().trim();
-                List<Trening> filtrirano = new ArrayList<>();
+                filtrirano = new ArrayList<>();
                 for (Trening trening : listaT) {
                     if(trening.getNaziv().toLowerCase().contains(naziv.toLowerCase())){
                         filtrirano.add(trening);
@@ -80,12 +79,43 @@ public class PrikazTreningaController {
                 if(filtrirano.size()!=0){
                     JOptionPane.showMessageDialog(null, "Sistem je pronašao treninge po zadatim parametrima");
                     pripremiFormuFiltered(filtrirano);
+                    ptf.getBtnPretraziTrining().setVisible(true);
+                    if(naziv.equals("")){
+                        ptf.getBtnPretraziTrining().setVisible(false);
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Sistem nije pronašao treninge po zadatim parametrima");
+                    ptf.getBtnPretraziTrining().setVisible(false);
                     return;
                 }
                 
+            }
+        });
+        
+        ptf.pretraziTreningAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String naziv = ptf.getTxtNaziv().getText().trim();
+                filtrirano = new ArrayList<>();
+                for (Trening trening : listaT) {
+                    if(trening.getNaziv().toLowerCase().contains(naziv.toLowerCase())){
+                        filtrirano.add(trening);
+                        break;
+                    }
+                }
+                if(filtrirano.size()!=0){
+                    JOptionPane.showMessageDialog(null, "Sistem je pronašao trening po zadatim parametrima");
+                    pripremiFormuFiltered(filtrirano);
+                    ptf.getBtnPretraziTrining().setVisible(true);
+                    if(naziv.equals("")){
+                        ptf.getBtnPretraziTrining().setVisible(false);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao trening po zadatim parametrima");
+                    return;
+                }
             }
         });
     }
@@ -104,6 +134,7 @@ public class PrikazTreningaController {
         for(Trening t: fil){
             ptf.getCbxTreninzi().addItem(t);
         }
+        ptf.getBtnPretraziTrining().setVisible(false);
     }
 
     public void otvoriFormu() {

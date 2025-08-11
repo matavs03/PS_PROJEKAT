@@ -63,12 +63,18 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnObrisi" max="32767" attributes="0"/>
-                              <Component id="btnAzuriraj" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="btnPretraziTrkaca" min="-2" max="-2" attributes="0"/>
                           <Component id="btnPretrazi" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btnObrisi" max="32767" attributes="0"/>
+                                      <Component id="btnAzuriraj" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="btnPretraziTrkaca" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDetalji" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -99,10 +105,12 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="btnObrisi" min="-2" pref="37" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="btnAzuriraj" min="-2" pref="34" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="btnDetalji" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnObrisi" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnAzuriraj" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -151,7 +159,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAzuriraj">
       <Properties>
-        <Property name="text" type="java.lang.String" value="A&#x17e;uriraj"/>
+        <Property name="text" type="java.lang.String" value="Izmeni"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -177,7 +185,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnPretrazi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
+        <Property name="text" type="java.lang.String" value="Pretra&#x17e;i trka&#x10d;e"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -202,6 +210,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPretraziTrkacaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDetalji">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detalji"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -6,6 +6,7 @@ package forme;
 
 import domen.Trening;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -21,6 +22,7 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
      */
     public PrikazTreningaForma() {
         initComponents();
+        btnPretraziTrining.setVisible(false);
     }
 
     public JComboBox<Trening> getCbxTreninzi() {
@@ -35,6 +37,12 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
         return txtNaziv;
     }
 
+    public JButton getBtnPretraziTrining() {
+        return btnPretraziTrining;
+    }
+
+    
+    
     
     
     /**
@@ -57,6 +65,7 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtNaziv = new javax.swing.JTextField();
         btnPretrazi = new javax.swing.JButton();
+        btnPretraziTrining = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,7 +90,9 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
 
         jLabel4.setText("Naziv:");
 
-        btnPretrazi.setText("Pretraži");
+        btnPretrazi.setText("Pretraži treninge");
+
+        btnPretraziTrining.setText("Pretraži trening");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,17 +116,19 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnObrisi))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnPretrazi))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(btnPretraziTrining, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnPretrazi, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -128,11 +141,14 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPretrazi))
-                .addGap(33, 33, 33))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPretrazi)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(txtNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
+                .addComponent(btnPretraziTrining)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,6 +163,7 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
     private javax.swing.JButton btnAzuriraj;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPretrazi;
+    private javax.swing.JButton btnPretraziTrining;
     private javax.swing.JComboBox<Trening> cbxTreninzi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -171,5 +188,9 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
 
     public void pretraziAddActionListener(ActionListener actionListener) {
         btnPretrazi.addActionListener(actionListener);
+    }
+
+    public void pretraziTreningAddActionListener(ActionListener actionListener) {
+        btnPretraziTrining.addActionListener(actionListener);
     }
 }
