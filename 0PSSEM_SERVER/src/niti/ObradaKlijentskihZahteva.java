@@ -282,6 +282,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                             odgovor.setOdgovor(e);
                         }
                         break;
+                        
+                    case OBRISI_STAVKU_EVIDENCIJE_TRENINGA:
+                        try {
+                            Controller.getInstance().obrisiStavkuEvidencijeTreninga((StavkaEvidencijeTreninga)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
                     default:
                         System.out.println("Operacija ne postoji");
                 }

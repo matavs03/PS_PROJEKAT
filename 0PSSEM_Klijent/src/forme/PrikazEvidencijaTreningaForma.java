@@ -310,5 +310,9 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         btnDodajStavku.addActionListener(actionListener);
     }
 
+    public void obrisiStavkuAddActionListener(ActionListener actionListener) {
+        btnObrisiStavku.addActionListener(actionListener);
+    }
+
     
 }

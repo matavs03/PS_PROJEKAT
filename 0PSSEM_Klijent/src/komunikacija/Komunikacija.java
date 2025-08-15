@@ -353,5 +353,17 @@ public class Komunikacija {
             throw (Exception) odg.getOdgovor();
         }
     }
+
+    public void obrisiStavkuEvidencijeTreninga(StavkaEvidencijeTreninga set) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_STAVKU_EVIDENCIJE_TRENINGA, set);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
     
 }

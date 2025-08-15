@@ -26,6 +26,7 @@ import operacija.sertifikat.DodajSertifikatSO;
 import operacija.sertifikat.ObrisiSertifikatSO;
 import operacija.sertifikat.UcitajSertifikateSO;
 import operacija.stavkaevidencijetreninga.DodajStavkuEvidencijeTreningaSO;
+import operacija.stavkaevidencijetreninga.ObrisiStavkuEvidencijeTreningaSO;
 import operacija.stavkaevidencijetreninga.UcitajStavkeEvidencijeTreningaSO;
 import operacija.trener.AzurirajTreneraSO;
 import operacija.trener.DodajTreneraSO;
@@ -203,6 +204,11 @@ public class Controller {
 
     public void dodajStavkuEvidencijeTreninga(StavkaEvidencijeTreninga stavkaEvidencijeTreninga) throws Exception {
         DodajStavkuEvidencijeTreningaSO operacija = new DodajStavkuEvidencijeTreningaSO();
+        operacija.izvrsi(stavkaEvidencijeTreninga, null);
+    }
+
+    public void obrisiStavkuEvidencijeTreninga(StavkaEvidencijeTreninga stavkaEvidencijeTreninga) throws Exception {
+        ObrisiStavkuEvidencijeTreningaSO operacija = new ObrisiStavkuEvidencijeTreningaSO();
         operacija.izvrsi(stavkaEvidencijeTreninga, null);
     }
 

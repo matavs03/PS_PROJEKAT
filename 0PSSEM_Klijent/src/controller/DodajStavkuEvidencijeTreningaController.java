@@ -37,6 +37,13 @@ public class DodajStavkuEvidencijeTreningaController {
         for (Trening trening : treninzi) {
             dsetf.getCbxTrening().addItem(trening);
         }
+        if(mod.equals(FormaMod.DODAJ)){
+            dsetf.getBtnAzuriraj().setVisible(false);
+        }
+        else{
+            dsetf.getBtnAzuriraj().setVisible(true);
+            dsetf.getBtnDodaj().setVisible(false);
+        }
     }
 
     public void otvoriFormu(FormaMod mod) {

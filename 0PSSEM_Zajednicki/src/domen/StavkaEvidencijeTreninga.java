@@ -148,7 +148,8 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        return "rb,evidencija,datumPrisustva,ocena,trening";
+//        return "rb,evidencija,datumPrisustva,ocena,trening";
+        return "evidencija,datumPrisustva,ocena,trening";
     }
 
     @Override
@@ -157,8 +158,8 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // format za DATE
         String datumPrisustvaStr = "'" + sdf.format(datumPrisustva) + "'";
 
-        return rb + ", "
-                + evidencija.getIdEvidencijaTreninga() + ", "
+//        return rb + ", "
+        return  evidencija.getIdEvidencijaTreninga() + ", "
                 + datumPrisustvaStr + ", "
                 + ocena + ", "
                 + trening.getIdTrening();

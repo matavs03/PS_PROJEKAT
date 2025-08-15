@@ -63,7 +63,7 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
             case 3:
                 return et.getBrojTreninga();
             case 4:
-                return et.getProsecnaOcena();
+                return String.format("%.2f", et.getProsecnaOcena());
             case 5:
                 return et.getTrener().getIme() + " " + et.getTrener().getPrezime();
             case 6:

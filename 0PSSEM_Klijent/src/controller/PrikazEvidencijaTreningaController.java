@@ -71,6 +71,7 @@ public class PrikazEvidencijaTreningaController {
                 List<StavkaEvidencijeTreninga> stavke = et.getStavke();
                 ModelTabeleStavke mts = new ModelTabeleStavke(stavke);
                 petf.getTblStavke().setModel(mts);
+                cordinator.Cordinator.getInstance().dodajParam("evidencijaTreninga", et);
             }
 
         });
@@ -160,6 +161,31 @@ public class PrikazEvidencijaTreningaController {
                 EvidencijaTreninga et = mte.getLista().get(red);
                 cordinator.Cordinator.getInstance().dodajParam("evidencijaTreninga", et);
                 cordinator.Cordinator.getInstance().otvoriDodajStavkuEvidencijeTreningaFormu();
+            }
+        });
+        
+        petf.obrisiStavkuAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = petf.getTblStavke().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste odabrali red");
+                    return;
+                }
+                ModelTabeleStavke mts = (ModelTabeleStavke) petf.getTblStavke().getModel();
+                StavkaEvidencijeTreninga set = mts.getLista().get(red);
+                try {
+                    komunikacija.Komunikacija.getInstance().obrisiStavkuEvidencijeTreninga(set);
+                    JOptionPane.showMessageDialog(null, "Sistem je obrisao stavku evidencije treninga");
+                    cordinator.Cordinator.getInstance().osveziPrikazEvidencijeTreningaFormu();
+                    EvidencijaTreninga et = (EvidencijaTreninga) cordinator.Cordinator.getInstance().vratiParam("evidencijaTreninga");
+                    et.getStavke().remove(set);
+                    cordinator.Cordinator.getInstance().osveziPrikazStavki(et.getStavke());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Sistem nije mogao da obriše stavku evidencije treninga");
+                }
+                
+                
             }
         });
 
