@@ -74,6 +74,14 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         return txtTrkac;
     }
 
+    public JButton getBtnPonistiIzmene() {
+        return btnPonistiIzmene;
+    }
+
+    public JButton getBtnSacuvajIzmene() {
+        return btnSacuvajIzmene;
+    }
+
     
     
     /**
@@ -104,6 +112,8 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         cbxTrening = new javax.swing.JComboBox<>();
         btnPretraziEvidencije = new javax.swing.JButton();
         btnPretraziEvidenciju = new javax.swing.JButton();
+        btnSacuvajIzmene = new javax.swing.JButton();
+        btnPonistiIzmene = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -167,6 +177,10 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
 
         btnPretraziEvidenciju.setText("Pretraži evidenciju");
 
+        btnSacuvajIzmene.setText("Sačuvaj izmene");
+
+        btnPonistiIzmene.setText("Poništi izmene");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,7 +200,9 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
                             .addComponent(btnIzmeniEvidenciju, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnObrisiEvidenciju, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnObrisiStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnObrisiStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnPonistiIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -247,7 +263,11 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnIzmeniStavku)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnObrisiStavku))
+                        .addComponent(btnObrisiStavku)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSacuvajIzmene)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPonistiIzmene))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
@@ -270,8 +290,10 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
     private javax.swing.JButton btnIzmeniStavku;
     private javax.swing.JButton btnObrisiEvidenciju;
     private javax.swing.JButton btnObrisiStavku;
+    private javax.swing.JButton btnPonistiIzmene;
     private javax.swing.JButton btnPretraziEvidencije;
     private javax.swing.JButton btnPretraziEvidenciju;
+    private javax.swing.JButton btnSacuvajIzmene;
     private javax.swing.JComboBox<Trening> cbxTrening;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -312,6 +334,18 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
 
     public void obrisiStavkuAddActionListener(ActionListener actionListener) {
         btnObrisiStavku.addActionListener(actionListener);
+    }
+
+    public void sIAddActionListener(ActionListener actionListener) {
+        btnSacuvajIzmene.addActionListener(actionListener);
+    }
+
+    public void pIAddActionListener(ActionListener actionListener) {
+        btnPonistiIzmene.addActionListener(actionListener);
+    }
+
+    public void izmeniStavkuAddActionListener(ActionListener actionListener) {
+        btnIzmeniStavku.addActionListener(actionListener);
     }
 
     

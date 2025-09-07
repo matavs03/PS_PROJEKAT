@@ -40,6 +40,8 @@
                           <Component id="btnObrisiEvidenciju" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnIzmeniStavku" alignment="0" max="32767" attributes="0"/>
                           <Component id="btnObrisiStavku" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnSacuvajIzmene" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnPonistiIzmene" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -122,6 +124,10 @@
                       <Component id="btnIzmeniStavku" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnObrisiStavku" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnSacuvajIzmene" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnPonistiIzmene" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" min="-2" pref="180" max="-2" attributes="0"/>
               </Group>
@@ -259,6 +265,16 @@
     <Component class="javax.swing.JButton" name="btnPretraziEvidenciju">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pretra&#x17e;i evidenciju"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSacuvajIzmene">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sa&#x10d;uvaj izmene"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnPonistiIzmene">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Poni&#x161;ti izmene"/>
       </Properties>
     </Component>
   </SubComponents>

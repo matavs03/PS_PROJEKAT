@@ -63,7 +63,7 @@ public class DodajSertifikatForma extends javax.swing.JFrame {
         jLabel2.setText("Institucija:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Dodaj sertifikat:");
+        jLabel3.setText("Dodaj/Izmeni sertifikat:");
 
         btnDodaj.setText("Dodaj");
 

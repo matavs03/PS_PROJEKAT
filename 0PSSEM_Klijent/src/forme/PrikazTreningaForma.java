@@ -86,7 +86,7 @@ public class PrikazTreningaForma extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel3.setText("Treninzi:");
 
-        btnAzuriraj.setText("Ažuriraj");
+        btnAzuriraj.setText("Izmeni");
 
         jLabel4.setText("Naziv:");
 

@@ -63,7 +63,6 @@ public class DodajEvidencijuTreningaController {
                 return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             };
 
-            
             LocalDate datumOdLocal = toLocalDateSafe.apply(et.getDatumOd());
             LocalDate datumDoLocal = toLocalDateSafe.apply(et.getDatumDo());
 
@@ -154,13 +153,13 @@ public class DodajEvidencijuTreningaController {
                 if (datumDo != null) {
                     utilDatumDo = Date.from(datumDo.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 }
-                
+
                 EvidencijaTreninga et = new EvidencijaTreninga(-1, utilDatumOd, utilDatumDo, 0, 0, t, tr);
 
                 try {
                     komunikacija.Komunikacija.getInstance().dodajEvidencijuTreninga(et);
                     JOptionPane.showMessageDialog(null, "Sistem je zapamtio evidenciju treninga");
-                    
+
                     detf.dispose();
 
                 } catch (Exception ex) {
@@ -168,7 +167,7 @@ public class DodajEvidencijuTreningaController {
                 }
             }
         });
-        
+
         detf.azurirajAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -232,6 +231,25 @@ public class DodajEvidencijuTreningaController {
                     utilDatumDo = Date.from(datumDo.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 }
                 EvidencijaTreninga et1 = (EvidencijaTreninga) cordinator.Cordinator.getInstance().vratiParam("evidencijaTreninga");
+
+                if (!et1.getStavke().isEmpty()) {
+                    Date datumPrisustvaDate = et1.getStavke().get(0).getDatumPrisustva();
+                    LocalDate datumPrveStavke;
+
+                    if (datumPrisustvaDate instanceof java.sql.Date) {
+                        datumPrveStavke = ((java.sql.Date) datumPrisustvaDate).toLocalDate();
+                    } else {
+                        datumPrveStavke = datumPrisustvaDate.toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate();
+                    }
+
+                    if (datumOd.isAfter(datumPrveStavke)) {
+                        JOptionPane.showMessageDialog(null, "Datum početka ne može biti posle prve stavke u evidenciji.");
+                        return;
+                    }
+                }
+
                 EvidencijaTreninga et = new EvidencijaTreninga(et1.getIdEvidencijaTreninga(), utilDatumOd, utilDatumDo, et1.getBrojTreninga(), et1.getProsecnaOcena(), t, tr);
 
                 try {

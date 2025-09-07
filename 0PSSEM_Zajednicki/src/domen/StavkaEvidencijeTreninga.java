@@ -34,6 +34,7 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
         this.trening = trening;
     }
 
+
     public EvidencijaTreninga getEvidencija() {
         return evidencija;
     }
@@ -100,16 +101,7 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
         if (this.rb != other.rb) {
             return false;
         }
-        if (this.ocena != other.ocena) {
-            return false;
-        }
-        if (!Objects.equals(this.evidencija, other.evidencija)) {
-            return false;
-        }
-        if (!Objects.equals(this.datumPrisustva, other.datumPrisustva)) {
-            return false;
-        }
-        return Objects.equals(this.trening, other.trening);
+        return Objects.equals(this.evidencija, other.evidencija);
     }
 
     @Override
@@ -154,12 +146,12 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-//        return rb+","+evidencija.getIdEvidencijaTreninga()+",'"+datumPrisustva+"',"+ocena+","+trening.getIdTrening();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // format za DATE
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String datumPrisustvaStr = "'" + sdf.format(datumPrisustva) + "'";
 
-//        return rb + ", "
-        return  evidencija.getIdEvidencijaTreninga() + ", "
+
+        return evidencija.getIdEvidencijaTreninga() + ", "
                 + datumPrisustvaStr + ", "
                 + ocena + ", "
                 + trening.getIdTrening();

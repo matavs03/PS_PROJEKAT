@@ -96,7 +96,8 @@ public class ModelTabeleTrener extends AbstractTableModel{
         }
         else{
             JOptionPane.showMessageDialog(null, "Sistem je našao trenere po zadatim parametrima");
-            List<Trener> trener = new ArrayList<>();
+  
+              List<Trener> trener = new ArrayList<>();
             trener.add(filteredList.get(0));
             this.lista = trener;
             fireTableDataChanged();

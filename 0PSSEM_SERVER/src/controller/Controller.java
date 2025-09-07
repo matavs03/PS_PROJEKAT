@@ -9,6 +9,7 @@ import domen.NivoForme;
 import domen.Sertifikat;
 import domen.StavkaEvidencijeTreninga;
 import domen.Trener;
+import domen.TrenerSertifikat;
 import domen.Trening;
 import domen.Trkac;
 import java.util.List;
@@ -25,6 +26,7 @@ import operacija.sertifikat.AzurirajSertifikatSO;
 import operacija.sertifikat.DodajSertifikatSO;
 import operacija.sertifikat.ObrisiSertifikatSO;
 import operacija.sertifikat.UcitajSertifikateSO;
+import operacija.stavkaevidencijetreninga.AzurirajStavkuEvidencijeTreningaSO;
 import operacija.stavkaevidencijetreninga.DodajStavkuEvidencijeTreningaSO;
 import operacija.stavkaevidencijetreninga.ObrisiStavkuEvidencijeTreningaSO;
 import operacija.stavkaevidencijetreninga.UcitajStavkeEvidencijeTreningaSO;
@@ -32,6 +34,9 @@ import operacija.trener.AzurirajTreneraSO;
 import operacija.trener.DodajTreneraSO;
 import operacija.trener.ObrisiTreneraSO;
 import operacija.trener.UcitajTrenereSO;
+import operacija.trenersertifikat.DodajTrenerSertifikatSO;
+import operacija.trenersertifikat.ObrisiTrenerSertifikatSO;
+import operacija.trenersertifikat.UcitajTrenerSertifikatSO;
 import operacija.trening.AzurirajTreningSO;
 import operacija.trening.DodajTreningSO;
 import operacija.trening.ObrisiTreningSO;
@@ -210,6 +215,27 @@ public class Controller {
     public void obrisiStavkuEvidencijeTreninga(StavkaEvidencijeTreninga stavkaEvidencijeTreninga) throws Exception {
         ObrisiStavkuEvidencijeTreningaSO operacija = new ObrisiStavkuEvidencijeTreningaSO();
         operacija.izvrsi(stavkaEvidencijeTreninga, null);
+    }
+
+    public void azurirajStavkuEvidencijeTreninga(StavkaEvidencijeTreninga stavkaEvidencijeTreninga) throws Exception {
+        AzurirajStavkuEvidencijeTreningaSO operacija = new AzurirajStavkuEvidencijeTreningaSO();
+        operacija.izvrsi(stavkaEvidencijeTreninga, null);
+    }
+
+    public List<TrenerSertifikat> ucitajTrnerSertifikat() throws Exception {
+        UcitajTrenerSertifikatSO operacija = new UcitajTrenerSertifikatSO();
+        operacija.izvrsi(new TrenerSertifikat(), null);
+        return operacija.getLista();
+    }
+
+    public void obrisiTrenerSertifikat(TrenerSertifikat trenerSertifikat) throws Exception {
+        ObrisiTrenerSertifikatSO operacija = new ObrisiTrenerSertifikatSO();
+        operacija.izvrsi(trenerSertifikat, null);
+    }
+
+    public void dodajTrenerSertifikat(TrenerSertifikat trenerSertifikat) throws Exception {
+        DodajTrenerSertifikatSO operacija = new DodajTrenerSertifikatSO();
+        operacija.izvrsi(trenerSertifikat, null);
     }
 
     

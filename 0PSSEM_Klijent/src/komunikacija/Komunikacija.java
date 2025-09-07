@@ -9,6 +9,7 @@ import domen.NivoForme;
 import domen.Sertifikat;
 import domen.StavkaEvidencijeTreninga;
 import domen.Trener;
+import domen.TrenerSertifikat;
 import domen.Trening;
 import domen.Trkac;
 import java.io.IOException;
@@ -356,6 +357,49 @@ public class Komunikacija {
 
     public void obrisiStavkuEvidencijeTreninga(StavkaEvidencijeTreninga set) throws Exception {
         Zahtev zahtev = new Zahtev(Operacija.OBRISI_STAVKU_EVIDENCIJE_TRENINGA, set);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void azurirajStavkuEvidencijeTreninga(StavkaEvidencijeTreninga stavkaEvidencijeTreninga) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.AZURIRAJ_STAVKU_EVIDENCIJE_TRENINGA, stavkaEvidencijeTreninga);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public List<TrenerSertifikat> ucitajTrenerSertifikat() {
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_TRENER_SERTIFIKAT, null);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        return (List<TrenerSertifikat>) odg.getOdgovor();
+    }
+
+    public void obrisiTrenerSertifikat(TrenerSertifikat ts) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_TRENER_SERTIFIKAT, ts);
+        pos.posalji(zahtev);
+        Odgovor odg = (Odgovor) prim.primi();
+        if(odg.getOdgovor()==null){
+            System.out.println("USPEH");
+        }
+        else{
+            throw (Exception) odg.getOdgovor();
+        }
+    }
+
+    public void dodajTrenerSertifikat(TrenerSertifikat ts) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_TRENER_SERTIFIKAT, ts);
         pos.posalji(zahtev);
         Odgovor odg = (Odgovor) prim.primi();
         if(odg.getOdgovor()==null){

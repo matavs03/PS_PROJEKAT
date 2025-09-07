@@ -45,7 +45,7 @@ public class ModelTabeleStavke extends AbstractTableModel{
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         switch (columnIndex) {
             case 0:
-                return s.getRb();
+                return rowIndex+1;
             case 1:
                 return format.format(s.getDatumPrisustva());
             case 2:

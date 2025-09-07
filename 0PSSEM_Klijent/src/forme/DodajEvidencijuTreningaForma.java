@@ -105,7 +105,7 @@ public class DodajEvidencijuTreningaForma extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Dodaj evidenciju treninga:");
+        jLabel1.setText("Dodaj/Izmeni evidenciju treninga:");
 
         jLabel2.setText("Datum od :");
 

@@ -32,6 +32,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         lblUlogovani = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -50,6 +51,9 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -57,6 +61,8 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenuItem5.setText("jMenuItem5");
 
         jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem14.setText("jMenuItem14");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,6 +172,26 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu7.setText("TrenerSertifikat");
+
+        jMenuItem15.setText("Prikaži trener sertifikat");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem15);
+
+        jMenuItem16.setText("Dodaj trener sertifikat");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem16);
+
+        jMenuBar1.add(jMenu7);
+
         jMenu6.setText("Evidencija treninga");
 
         jMenuItem12.setText("Prikaži evidencije");
@@ -260,6 +286,14 @@ public class GlavnaForma extends javax.swing.JFrame {
         cordinator.Cordinator.getInstance().otvoriDodajEvidencijuTreningaFormu();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        cordinator.Cordinator.getInstance().otvoriPrikaziTrenerSertifikatFormu();
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        cordinator.Cordinator.getInstance().otvoriDodajTrenerSertifikatFormu();
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -284,12 +318,16 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

@@ -10,6 +10,7 @@ import domen.NivoForme;
 import domen.Sertifikat;
 import domen.StavkaEvidencijeTreninga;
 import domen.Trener;
+import domen.TrenerSertifikat;
 import domen.Trening;
 import domen.Trkac;
 import java.io.IOException;
@@ -286,6 +287,38 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case OBRISI_STAVKU_EVIDENCIJE_TRENINGA:
                         try {
                             Controller.getInstance().obrisiStavkuEvidencijeTreninga((StavkaEvidencijeTreninga)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case AZURIRAJ_STAVKU_EVIDENCIJE_TRENINGA:
+                        try {
+                            Controller.getInstance().azurirajStavkuEvidencijeTreninga((StavkaEvidencijeTreninga)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case UCITAJ_TRENER_SERTIFIKAT:
+                        List<TrenerSertifikat> ts = Controller.getInstance().ucitajTrnerSertifikat();
+                        odgovor.setOdgovor(ts);
+                        break;
+                        
+                    case OBRISI_TRENER_SERTIFIKAT:
+                        try {
+                            Controller.getInstance().obrisiTrenerSertifikat((TrenerSertifikat)zahtev.getParametar());
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
+                        
+                    case DODAJ_TRENER_SERTIFIKAT:
+                        try {
+                            Controller.getInstance().dodajTrenerSertifikat((TrenerSertifikat)zahtev.getParametar());
                             odgovor.setOdgovor(null);
                         } catch (Exception e) {
                             odgovor.setOdgovor(e);

@@ -109,7 +109,7 @@ public class DodajTrkacaForma extends javax.swing.JFrame {
         btnAzuriraj.setText("Ažuriraj");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Dodaj/Ažuriraj trkača:");
+        jLabel5.setText("Dodaj/Izmeni trkača:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

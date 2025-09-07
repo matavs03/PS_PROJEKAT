@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,9 +28,36 @@ public class PrikazEvidencijaTreningaController {
 
     private final PrikazEvidencijaTreningaForma petf;
 
+    private List<StavkaEvidencijeTreninga> stavke;
+    
+    private boolean uIzmeni = false;
+    private ModelTabeleStavke mts;
+    // dodatne liste za izmene
+    private List<StavkaEvidencijeTreninga> noveStavke = new ArrayList<>();
+    private List<StavkaEvidencijeTreninga> izmenjeneStavke = new ArrayList<>();
+    private List<StavkaEvidencijeTreninga> obrisaneStavke = new ArrayList<>();
+
     public PrikazEvidencijaTreningaController(PrikazEvidencijaTreningaForma petf) {
         this.petf = petf;
         addActionListeners();
+        petf.getBtnSacuvajIzmene().setEnabled(uIzmeni);
+        petf.getBtnPonistiIzmene().setEnabled(uIzmeni);
+    }
+
+    public List<StavkaEvidencijeTreninga> getStavke() {
+        return stavke;
+    }
+
+    public List<StavkaEvidencijeTreninga> getNoveStavke() {
+        return noveStavke;
+    }
+
+    public List<StavkaEvidencijeTreninga> getIzmenjeneStavke() {
+        return izmenjeneStavke;
+    }
+
+    public List<StavkaEvidencijeTreninga> getObrisaneStavke() {
+        return obrisaneStavke;
     }
 
     public void pripremiFormu() {
@@ -37,9 +65,11 @@ public class PrikazEvidencijaTreningaController {
         ModelTabeleEvidencijeTreninga mtet = new ModelTabeleEvidencijeTreninga(lista);
         petf.getTblEvidencije().setModel(mtet);
         for (EvidencijaTreninga et : lista) {
-            List<StavkaEvidencijeTreninga> stavke = komunikacija.Komunikacija.getInstance().ucitajStavkeEvidencijeTreninga(et.getIdEvidencijaTreninga());
-            et.setStavke(stavke);
+            List<StavkaEvidencijeTreninga> stavkeEt = komunikacija.Komunikacija.getInstance().ucitajStavkeEvidencijeTreninga(et.getIdEvidencijaTreninga());
+            et.setStavke(stavkeEt);
         }
+        stavke=lista.get(0).getStavke();
+        osveziTabeluStavki();
         List<Trening> treninzi = komunikacija.Komunikacija.getInstance().ucitajTreninge();
         petf.getCbxTrening().removeAllItems();
         petf.getCbxTrening().addItem(null);
@@ -54,9 +84,16 @@ public class PrikazEvidencijaTreningaController {
         petf.setVisible(true);
     }
 
-    public void osveziTabeluStavki(List<StavkaEvidencijeTreninga> stavke) {
-        ModelTabeleStavke mts = new ModelTabeleStavke(stavke);
+    public ModelTabeleStavke getMts() {
+        return mts;
+    }
+
+    public void osveziTabeluStavki() {
+
+        mts = new ModelTabeleStavke(new ArrayList<>(stavke));
         petf.getTblStavke().setModel(mts);
+        mts.fireTableDataChanged();
+
     }
 
     private void addActionListeners() {
@@ -64,11 +101,14 @@ public class PrikazEvidencijaTreningaController {
         petf.stavkeAddActinListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if (uIzmeni) {
+                    return;
+                }
                 int red = petf.getTblEvidencije().getSelectedRow();
                 ModelTabeleEvidencijeTreninga mte = (ModelTabeleEvidencijeTreninga) petf.getTblEvidencije().getModel();
                 EvidencijaTreninga et = mte.getLista().get(red);
                 System.out.println(et);
-                List<StavkaEvidencijeTreninga> stavke = et.getStavke();
+                stavke = et.getStavke();
                 ModelTabeleStavke mts = new ModelTabeleStavke(stavke);
                 petf.getTblStavke().setModel(mts);
                 cordinator.Cordinator.getInstance().dodajParam("evidencijaTreninga", et);
@@ -157,14 +197,66 @@ public class PrikazEvidencijaTreningaController {
                     JOptionPane.showMessageDialog(null, "Niste odabrali red");
                     return;
                 }
+                if (uIzmeni == false) {
+                    uIzmeni = true;
+                    petf.getBtnSacuvajIzmene().setEnabled(uIzmeni);
+                    petf.getBtnPonistiIzmene().setEnabled(uIzmeni);
+                    
+                    
+                }
+
                 ModelTabeleEvidencijeTreninga mte = (ModelTabeleEvidencijeTreninga) petf.getTblEvidencije().getModel();
                 EvidencijaTreninga et = mte.getLista().get(red);
                 cordinator.Cordinator.getInstance().dodajParam("evidencijaTreninga", et);
                 cordinator.Cordinator.getInstance().otvoriDodajStavkuEvidencijeTreningaFormu();
+
             }
         });
-        
+
         petf.obrisiStavkuAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int red = petf.getTblStavke().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste odabrali red");
+                    return;
+                }
+                if (uIzmeni == false) {
+                    uIzmeni = true;
+                    petf.getBtnSacuvajIzmene().setEnabled(uIzmeni);
+                    petf.getBtnPonistiIzmene().setEnabled(uIzmeni);
+                    
+                }
+                ModelTabeleStavke mts = (ModelTabeleStavke) petf.getTblStavke().getModel();
+                StavkaEvidencijeTreninga set = mts.getLista().get(red);
+                try {
+                    for (StavkaEvidencijeTreninga stavkaEvidencijeTreninga : stavke) {
+                        if(stavkaEvidencijeTreninga.getEvidencija().getIdEvidencijaTreninga()==set.getEvidencija().getIdEvidencijaTreninga() && stavkaEvidencijeTreninga.getRb()==set.getRb()){
+                            stavke.remove(stavkaEvidencijeTreninga);
+                            break;
+                        }                    
+                    }
+                    obrisaneStavke.add(set);
+                    for (StavkaEvidencijeTreninga stavkaEvidencijeTreninga : noveStavke) {
+                        if(stavkaEvidencijeTreninga.getEvidencija().getIdEvidencijaTreninga()==set.getEvidencija().getIdEvidencijaTreninga() && stavkaEvidencijeTreninga.getRb()==set.getRb()){
+                            noveStavke.remove(stavkaEvidencijeTreninga);
+                            break;
+                        }                    
+                    }
+                    osveziTabeluStavki();
+                    JOptionPane.showMessageDialog(null, "Sistem je obrisao stavku evidencije treninga");
+
+                    osveziTabeluStavki();
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Sistem nije mogao da obriše stavku evidencije treninga");
+                }
+
+            }
+        });
+
+        petf.izmeniStavkuAddActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int red = petf.getTblStavke().getSelectedRow();
@@ -172,20 +264,70 @@ public class PrikazEvidencijaTreningaController {
                     JOptionPane.showMessageDialog(null, "Niste odabrali red");
                     return;
                 }
+                if (uIzmeni == false) {
+                    uIzmeni = true;
+                    petf.getBtnSacuvajIzmene().setEnabled(uIzmeni);
+                    petf.getBtnPonistiIzmene().setEnabled(uIzmeni);
+                    
+                }
                 ModelTabeleStavke mts = (ModelTabeleStavke) petf.getTblStavke().getModel();
                 StavkaEvidencijeTreninga set = mts.getLista().get(red);
-                try {
-                    komunikacija.Komunikacija.getInstance().obrisiStavkuEvidencijeTreninga(set);
-                    JOptionPane.showMessageDialog(null, "Sistem je obrisao stavku evidencije treninga");
-                    cordinator.Cordinator.getInstance().osveziPrikazEvidencijeTreningaFormu();
-                    EvidencijaTreninga et = (EvidencijaTreninga) cordinator.Cordinator.getInstance().vratiParam("evidencijaTreninga");
-                    et.getStavke().remove(set);
-                    cordinator.Cordinator.getInstance().osveziPrikazStavki(et.getStavke());
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "Sistem nije mogao da obriše stavku evidencije treninga");
+                cordinator.Cordinator.getInstance().dodajParam("stavkaEvidencijaTreninga", set);
+                cordinator.Cordinator.getInstance().otvoriIzmeniStavkuEvidencijeTreninga();
+
+            }
+        });
+
+        petf.sIAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (StavkaEvidencijeTreninga stavkaEvidencijeTreninga : noveStavke) {
+                    try {
+                        komunikacija.Komunikacija.getInstance().dodajStavkuEvidencijeTreninga(stavkaEvidencijeTreninga);
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrikazEvidencijaTreningaController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+                for (StavkaEvidencijeTreninga stavkaEvidencijeTreninga : izmenjeneStavke) {
+                    try {
+                        komunikacija.Komunikacija.getInstance().azurirajStavkuEvidencijeTreninga(stavkaEvidencijeTreninga);
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrikazEvidencijaTreningaController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                for (StavkaEvidencijeTreninga stavkaEvidencijeTreninga : obrisaneStavke) {
+                    try {
+                        komunikacija.Komunikacija.getInstance().obrisiStavkuEvidencijeTreninga(stavkaEvidencijeTreninga);
+                    } catch (Exception ex) {
+                        Logger.getLogger(PrikazEvidencijaTreningaController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                noveStavke.clear();
+                obrisaneStavke.clear();
+                izmenjeneStavke.clear();
+                JOptionPane.showMessageDialog(null, "Sistem je zapamtio izmene");
+                uIzmeni = false;
+                petf.getBtnSacuvajIzmene().setEnabled(uIzmeni);
+                petf.getBtnPonistiIzmene().setEnabled(uIzmeni);
+                pripremiFormu();
+            }
+        });
+
+        petf.pIAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                noveStavke.clear();
+                obrisaneStavke.clear();
+                izmenjeneStavke.clear();
+                uIzmeni = false;
+                petf.getBtnSacuvajIzmene().setEnabled(uIzmeni);
+                petf.getBtnPonistiIzmene().setEnabled(uIzmeni);
+                pripremiFormu();
                 
                 
+
+                
+
             }
         });
 

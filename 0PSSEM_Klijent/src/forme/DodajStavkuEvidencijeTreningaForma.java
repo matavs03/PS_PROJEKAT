@@ -89,7 +89,7 @@ public class DodajStavkuEvidencijeTreningaForma extends javax.swing.JFrame {
         jLabel3.setText(".");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Dodaj stavku evidencije treninga:");
+        jLabel1.setText("Dodaj/Izmeni stavku evidencije treninga:");
 
         jLabel2.setText("Datum:");
 
@@ -149,7 +149,7 @@ public class DodajStavkuEvidencijeTreningaForma extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDodaj, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnAzuriraj, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,5 +214,9 @@ public class DodajStavkuEvidencijeTreningaForma extends javax.swing.JFrame {
 
     public void dodajAddActionLisener(ActionListener actionListener) {
         btnDodaj.addActionListener(actionListener);
+    }
+
+    public void azurirajAddActionListener(ActionListener actionListener) {
+        btnAzuriraj.addActionListener(actionListener);
     }
 }
