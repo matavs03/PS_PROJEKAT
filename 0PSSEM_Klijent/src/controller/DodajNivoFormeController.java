@@ -29,7 +29,10 @@ public class DodajNivoFormeController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String naziv = dnff.getTxtNaziv().getText().strip();
-                System.out.println(naziv);
+                if(naziv.equals("")){
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti nivo forme");
+                    return;
+                }
                 NivoForme nf = new NivoForme(naziv);
 
                 System.out.println(nf.getOpis());
@@ -47,7 +50,10 @@ public class DodajNivoFormeController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String naziv = dnff.getTxtNaziv().getText().strip();
-                System.out.println(naziv);
+                if(naziv.equals("")){
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti nivo forme");
+                    return;
+                }
                 NivoForme nf = new NivoForme(naziv);
                 NivoForme nf1 = (NivoForme) cordinator.Cordinator.getInstance().vratiParam("nivoForme");
                 nf.setIdNivoForme(nf1.getIdNivoForme());

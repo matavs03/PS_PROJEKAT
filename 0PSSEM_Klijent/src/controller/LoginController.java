@@ -39,11 +39,11 @@ public class LoginController {
                 Trener t = Komunikacija.getInstance().login(username, password);
                 
                 if(t==null){
-                    JOptionPane.showMessageDialog(lf, "Pogrešni parametri", "Greška", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Korisničko ime i šifra nisu ispravni");
                 }
                 else{
                     cordinator.Cordinator.getInstance().setUlogovani(t);
-                    JOptionPane.showMessageDialog(lf, "Prijava uspešna", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Korisničko ime i šifra su ispravni");
                     cordinator.Cordinator.getInstance().otvoriGlavnuFormu();
                     lf.dispose();
                     

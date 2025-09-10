@@ -77,11 +77,11 @@ public class ModelTabeleTrkac extends AbstractTableModel {
             .filter(p -> (nf == null || p.getNivoForme().equals(nf)))
             .collect(Collectors.toList());
         if(filteredList.size()==0){
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trkače po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem ne može da nadje trkače po zadatim kriterijumima");
             return false;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Sistem je našao trkače po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao trkače po zadatim kriterijumima");
             this.lista = filteredList;
             fireTableDataChanged();
             return true;
@@ -98,11 +98,11 @@ public class ModelTabeleTrkac extends AbstractTableModel {
             .filter(p -> (nf == null || p.getNivoForme().equals(nf)))
             .collect(Collectors.toList());
         if(filteredList.size()==0){
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trkača po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem ne može na nadje trkača");
             return null;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Sistem je našao trkača po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao trkača");
             List<Trkac> trkac = new ArrayList<>();
             trkac.add(filteredList.get(0));
             this.lista = trkac;

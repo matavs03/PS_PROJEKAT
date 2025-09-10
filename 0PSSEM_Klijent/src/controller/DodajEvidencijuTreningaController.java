@@ -102,10 +102,10 @@ public class DodajEvidencijuTreningaController {
 
                     datumOd = LocalDate.of(godinaOd, mesecOd, danOd);
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Dan, mesec i godina za datum od moraju biti brojevi.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 } catch (DateTimeException ex) {
-                    JOptionPane.showMessageDialog(null, "Unet nevalidan datum od.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
 
@@ -121,10 +121,10 @@ public class DodajEvidencijuTreningaController {
 
                         datumDo = LocalDate.of(godinaDo, mesecDo, danDo);
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Dan, mesec i godina za datum do moraju biti brojevi.");
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                         return;
                     } catch (DateTimeException ex) {
-                        JOptionPane.showMessageDialog(null, "Unet nevalidan datum do.");
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                         return;
                     }
                 }
@@ -132,16 +132,16 @@ public class DodajEvidencijuTreningaController {
                 LocalDate danas = LocalDate.now();
 
                 if (datumOd.isAfter(danas)) {
-                    JOptionPane.showMessageDialog(null, "Datum od ne može biti u budućnosti.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
                 if (datumDo != null && datumDo.isAfter(danas)) {
-                    JOptionPane.showMessageDialog(null, "Datum do ne može biti u budućnosti.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
 
                 if (datumDo != null && datumDo.isBefore(datumOd)) {
-                    JOptionPane.showMessageDialog(null, "Datum do ne sme biti pre datuma od.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
 
@@ -179,10 +179,10 @@ public class DodajEvidencijuTreningaController {
 
                     datumOd = LocalDate.of(godinaOd, mesecOd, danOd);
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Dan, mesec i godina za datum od moraju biti brojevi.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 } catch (DateTimeException ex) {
-                    JOptionPane.showMessageDialog(null, "Unet nevalidan datum od.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
 
@@ -198,10 +198,10 @@ public class DodajEvidencijuTreningaController {
 
                         datumDo = LocalDate.of(godinaDo, mesecDo, danDo);
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(null, "Dan, mesec i godina za datum do moraju biti brojevi.");
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                         return;
                     } catch (DateTimeException ex) {
-                        JOptionPane.showMessageDialog(null, "Unet nevalidan datum do.");
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                         return;
                     }
                 }
@@ -209,16 +209,16 @@ public class DodajEvidencijuTreningaController {
                 LocalDate danas = LocalDate.now();
 
                 if (datumOd.isAfter(danas)) {
-                    JOptionPane.showMessageDialog(null, "Datum od ne može biti u budućnosti.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
                 if (datumDo != null && datumDo.isAfter(danas)) {
-                    JOptionPane.showMessageDialog(null, "Datum do ne može biti u budućnosti.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
 
                 if (datumDo != null && datumDo.isBefore(datumOd)) {
-                    JOptionPane.showMessageDialog(null, "Datum do ne sme biti pre datuma od.");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                     return;
                 }
 
@@ -246,6 +246,24 @@ public class DodajEvidencijuTreningaController {
 
                     if (datumOd.isAfter(datumPrveStavke)) {
                         JOptionPane.showMessageDialog(null, "Datum početka ne može biti posle prve stavke u evidenciji.");
+                        return;
+                    }
+                }
+
+                if (!et1.getStavke().isEmpty()) {
+                    Date datumPoslednjeStavkeDate = et1.getStavke().get(et1.getStavke().size() - 1).getDatumPrisustva();
+                    LocalDate datumPoslednjeStavke;
+
+                    if (datumPoslednjeStavkeDate instanceof java.sql.Date) {
+                        datumPoslednjeStavke = ((java.sql.Date) datumPoslednjeStavkeDate).toLocalDate();
+                    } else {
+                        datumPoslednjeStavke = datumPoslednjeStavkeDate.toInstant()
+                                .atZone(ZoneId.systemDefault())
+                                .toLocalDate();
+                    }
+
+                    if (datumDo!=null && datumDo.isBefore(datumPoslednjeStavke)) {
+                        JOptionPane.showMessageDialog(null, "Datum završetka mora biti posle poslednje stavke u evidenciji.");
                         return;
                     }
                 }

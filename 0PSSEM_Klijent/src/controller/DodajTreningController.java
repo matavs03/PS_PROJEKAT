@@ -46,6 +46,10 @@ public class DodajTreningController {
             public void actionPerformed(ActionEvent e) {
                 String naziv = dtf.getTxtNaziv().getText().strip();
                 String opis = dtf.getTxtaOpis().getText().strip();
+                if(naziv.equals("") || opis.equals("")){
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti trening");
+                    return;
+                }
                 Trening noviTrening = new Trening(naziv, opis);
                 dtf.getTxtNaziv().setText("");
                 dtf.getTxtaOpis().setText("");
@@ -64,6 +68,10 @@ public class DodajTreningController {
             public void actionPerformed(ActionEvent e) {
                 String naziv = dtf.getTxtNaziv().getText().strip();
                 String opis = dtf.getTxtaOpis().getText().strip();
+                if(naziv.equals("") || opis.equals("")){
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti trening");
+                    return;
+                }
                 Trening noviTrening = new Trening(naziv, opis);
                 Trening t = (Trening) cordinator.Cordinator.getInstance().vratiParam("trening");
                 noviTrening.setIdTrening(t.getIdTrening());

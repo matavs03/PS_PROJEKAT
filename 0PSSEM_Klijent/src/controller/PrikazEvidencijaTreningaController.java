@@ -104,10 +104,16 @@ public class PrikazEvidencijaTreningaController {
                 if (uIzmeni) {
                     return;
                 }
+                
                 int red = petf.getTblEvidencije().getSelectedRow();
                 ModelTabeleEvidencijeTreninga mte = (ModelTabeleEvidencijeTreninga) petf.getTblEvidencije().getModel();
                 EvidencijaTreninga et = mte.getLista().get(red);
-                System.out.println(et);
+                if(et.getDatumDo()!=null){
+                    petf.getBtnDodajStavku().setEnabled(false);
+                }
+                else{
+                    petf.getBtnDodajStavku().setEnabled(true);
+                }
                 stavke = et.getStavke();
                 ModelTabeleStavke mts = new ModelTabeleStavke(stavke);
                 petf.getTblStavke().setModel(mts);
@@ -305,7 +311,7 @@ public class PrikazEvidencijaTreningaController {
                 noveStavke.clear();
                 obrisaneStavke.clear();
                 izmenjeneStavke.clear();
-                JOptionPane.showMessageDialog(null, "Sistem je zapamtio izmene");
+                JOptionPane.showMessageDialog(null, "Sistem je zapamtio evidenciju treninga");
                 uIzmeni = false;
                 petf.getBtnSacuvajIzmene().setEnabled(uIzmeni);
                 petf.getBtnPonistiIzmene().setEnabled(uIzmeni);

@@ -77,7 +77,7 @@ public class PrikazTreningaController {
                     }
                 }
                 if(filtrirano.size()!=0){
-                    JOptionPane.showMessageDialog(null, "Sistem je pronašao treninge po zadatim parametrima");
+                    JOptionPane.showMessageDialog(null, "Sistem je pronašao treninge po zadatim kriterijumima");
                     pripremiFormuFiltered(filtrirano);
                     ptf.getBtnPretraziTrining().setVisible(true);
                     if(naziv.equals("")){
@@ -85,7 +85,7 @@ public class PrikazTreningaController {
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao treninge po zadatim parametrima");
+                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao treninge po zadatim kriterijumima");
                     ptf.getBtnPretraziTrining().setVisible(false);
                     return;
                 }
@@ -105,7 +105,7 @@ public class PrikazTreningaController {
                     }
                 }
                 if(filtrirano.size()!=0){
-                    JOptionPane.showMessageDialog(null, "Sistem je pronašao trening po zadatim parametrima");
+                    JOptionPane.showMessageDialog(null, "Sistem je pronašao trening po zadatim kriterijumima");
                     pripremiFormuFiltered(filtrirano);
                     ptf.getBtnPretraziTrining().setVisible(true);
                     if(naziv.equals("")){
@@ -113,7 +113,7 @@ public class PrikazTreningaController {
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao trening po zadatim parametrima");
+                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao trening po zadatim kriterijumima");
                     return;
                 }
             }

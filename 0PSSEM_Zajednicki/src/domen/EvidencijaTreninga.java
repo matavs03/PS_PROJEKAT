@@ -152,11 +152,10 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat {
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
 
         while (rs.next()) {
-            
+
             int nivoFormeId = rs.getInt("nivoforme.idNivoForme");
             String nivoFormeOpis = rs.getString("nivoforme.opis");
             NivoForme nf = new NivoForme(nivoFormeId, nivoFormeOpis);
-
 
             int trkacId = rs.getInt("trkac.idTrkac");
             String trkacIme = rs.getString("trkac.ime");
@@ -164,7 +163,6 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat {
             String trkacEmail = rs.getString("trkac.email");
             Trkac trkac1 = new Trkac(trkacId, trkacIme, trkacPrezime, trkacEmail, nf);
 
-            
             int trenerId = rs.getInt("trener.idTrener");
             String trenerIme = rs.getString("trener.ime");
             String trenerPrezime = rs.getString("trener.prezime");
@@ -172,7 +170,6 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat {
             String trenerPassword = rs.getString("trener.password");
             Trener trener1 = new Trener(trenerId, trenerIme, trenerPrezime, trenerUsername, trenerPassword);
 
-            
             int evidencijaId = rs.getInt("evidencijatreninga.idEvidencijaTreninga");
             Date datumOd1 = rs.getDate("evidencijatreninga.datumOd");
             Date datumDo1 = rs.getDate("evidencijatreninga.datumDo");
@@ -197,12 +194,12 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat {
     public String vratiVrednostiZaUbacivanje() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // format za DATE
         String datumOdStr = "'" + sdf.format(datumOd) + "'";
-        String datumDoStr =null;
-        if(datumDo!=null){
-           datumDoStr = "'" + sdf.format(datumDo) + "'";
+        String datumDoStr = null;
+        if (datumDo != null) {
+            datumDoStr = "'" + sdf.format(datumDo) + "'";
         }
-        
-        return datumOdStr +", "+ (datumDoStr != null ? datumDoStr : "null")+ ", " + brojTreninga + "," + prosecnaOcena + "," + trener.getIdTrener() + "," + trkac.getIdTrkac();
+
+        return datumOdStr + ", " + (datumDoStr != null ? datumDoStr : "null") + ", " + brojTreninga + "," + prosecnaOcena + "," + trener.getIdTrener() + "," + trkac.getIdTrkac();
     }
 
     @Override
@@ -219,18 +216,18 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat {
     public String vratiVrednostZaIzmenu() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    String datumOdStr = "'" + sdf.format(datumOd) + "'";
-    String datumDoStr = null;
-    if (datumDo != null) {
-        datumDoStr = "'" + sdf.format(datumDo) + "'";
-    }
+        String datumOdStr = "'" + sdf.format(datumOd) + "'";
+        String datumDoStr = null;
+        if (datumDo != null) {
+            datumDoStr = "'" + sdf.format(datumDo) + "'";
+        }
 
-    return "datumOd=" + datumOdStr +
-           ", datumDo=" + (datumDoStr != null ? datumDoStr : "null") +
-           ", brojTreninga=" + brojTreninga +
-           ", prosecnaOcena=" + prosecnaOcena +
-           ", trener=" + trener.getIdTrener() +
-           ", trkac=" + trkac.getIdTrkac();
+        return "datumOd=" + datumOdStr
+                + ", datumDo=" + (datumDoStr != null ? datumDoStr : "null")
+                + ", brojTreninga=" + brojTreninga
+                + ", prosecnaOcena=" + prosecnaOcena
+                + ", trener=" + trener.getIdTrener()
+                + ", trkac=" + trkac.getIdTrkac();
     }
 
 }

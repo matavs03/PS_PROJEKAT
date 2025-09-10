@@ -67,11 +67,11 @@ public class ModeltabeleSertifikati extends AbstractTableModel{
             .filter(p -> (institucija == null || institucija.isEmpty() || p.getInstitucija().toLowerCase().contains(institucija.toLowerCase())))     
             .collect(Collectors.toList());
         if(filteredList.size()==0){
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje sertifikate po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje sertifikate po zadatim kriterijumima");
             return false;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Sistem je našao sertifikate po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao sertifikate po zadatim kriterijumima");
             this.lista = filteredList;
             fireTableDataChanged();
             return true;
@@ -86,11 +86,11 @@ public class ModeltabeleSertifikati extends AbstractTableModel{
             .filter(p -> (institucija == null || institucija.isEmpty() || p.getInstitucija().toLowerCase().contains(institucija.toLowerCase())))     
             .collect(Collectors.toList());
         if(filteredList.size()==0){
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje sertifikat po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje sertifikat po zadatim kriterijumima");
             return null;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Sistem je našao sertifikat po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao sertifikat po zadatim kriterijumima");
             List<Sertifikat> sertifikat = new ArrayList<>();
             sertifikat.add(filteredList.get(0));
             this.lista = sertifikat;

@@ -82,7 +82,7 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
     public boolean pretrazi(String trenerImePrezime, String trkacImePrezime, Trening izabraniTrening) {
 
         List<EvidencijaTreninga> filteredList = kopijaOriginalaLista.stream()
-                // filter za trenera - proverava da li ime ili prezime sadrže uneti tekst
+                
                 .filter(et -> {
                     if (trenerImePrezime == null || trenerImePrezime.isEmpty()) {
                         return true;
@@ -91,7 +91,7 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
                     return et.getTrener().getIme().toLowerCase().contains(t)
                             || et.getTrener().getPrezime().toLowerCase().contains(t);
                 })
-                // filter za trkača - isto kao trener
+                
                 .filter(et -> {
                     if (trkacImePrezime == null || trkacImePrezime.isEmpty()) {
                         return true;
@@ -100,7 +100,7 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
                     return et.getTrkac().getIme().toLowerCase().contains(t)
                             || et.getTrkac().getPrezime().toLowerCase().contains(t);
                 })
-                // filter za trening iz stavki
+                
                 .filter(et -> {
                     if (izabraniTrening == null) {
                         return true;
@@ -111,10 +111,10 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
                 .collect(Collectors.toList());
 
         if (filteredList.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo da nađe evidencije po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem ne može da nadje evidencije treninga po zadatim kriterijumima");
             return false;
         } else {
-            JOptionPane.showMessageDialog(null, "Sistem je našao evidencije po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao evidencije treninga po zadatim kriterijumima");
             this.lista = filteredList;
             fireTableDataChanged();
             return true;
@@ -149,10 +149,10 @@ public class ModelTabeleEvidencijeTreninga extends AbstractTableModel {
                 .collect(Collectors.toList());
 
         if (filteredList.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo da nađe evidenciju po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem ne može da nadje evidenciju treninga");
             return null;
         } else {
-            JOptionPane.showMessageDialog(null, "Sistem je našao evidenciju po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao evidenciju treninga");
             EvidencijaTreninga prva = filteredList.get(0);
             this.lista = Collections.singletonList(prva);
             fireTableDataChanged();

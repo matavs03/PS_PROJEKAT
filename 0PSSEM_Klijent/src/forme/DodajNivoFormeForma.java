@@ -20,6 +20,7 @@ public class DodajNivoFormeForma extends javax.swing.JFrame {
     public DodajNivoFormeForma() {
         
         initComponents();
+        btnAzuriraj.setVisible(false);
     }
 
     public JTextField getTxtNaziv() {

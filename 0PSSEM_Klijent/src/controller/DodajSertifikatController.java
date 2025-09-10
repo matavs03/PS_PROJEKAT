@@ -69,7 +69,7 @@ public class DodajSertifikatController {
                 String naziv = dsf.getTxtNaziv().getText().strip();
                 String institucija = dsf.getTxtInstitucija().getText().strip();
                 if (naziv.equals("") || institucija.equals("")) {
-                    JOptionPane.showMessageDialog(null, "Unesite tekst");
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti sertifikat");
                     return;
                 }
                 Sertifikat s1 = (Sertifikat) cordinator.Cordinator.getInstance().vratiParam("sertifikat");

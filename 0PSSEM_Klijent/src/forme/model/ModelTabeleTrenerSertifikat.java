@@ -104,10 +104,10 @@ public class ModelTabeleTrenerSertifikat extends AbstractTableModel{
             .collect(Collectors.toList());
 
         if (filteredList.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo da nadje trener sertifikat po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem nije uspeo da nadje trener sertifikat po zadatim kriterijumima");
             return null;
         } else {
-            JOptionPane.showMessageDialog(null, "Sistem je našao trener sertifikat po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao trener sertifikat po zadatim kriterijumima");
             TrenerSertifikat ts = filteredList.get(0);
             this.lista = new ArrayList<>();
             this.lista.add(ts);

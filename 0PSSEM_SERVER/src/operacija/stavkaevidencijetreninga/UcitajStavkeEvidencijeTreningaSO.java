@@ -30,7 +30,7 @@ public class UcitajStavkeEvidencijeTreningaSO extends ApstraktnaGenerickaOperaci
 
     @Override
     protected void izvrsiOperaciju(Object objekat, String kljuc) throws Exception {
-        String uslov = " JOIN evidencijatreninga ON stavkaevidencijetreninga.evidencija = evidencijatreninga.idEvidencijaTreninga JOIN trening ON stavkaevidencijetreninga.trening = trening.idTrening WHERE evidencija="+kljuc;
+        String uslov = " JOIN evidencijatreninga ON stavkaevidencijetreninga.evidencija = evidencijatreninga.idEvidencijaTreninga JOIN trening ON stavkaevidencijetreninga.trening = trening.idTrening WHERE evidencija="+kljuc+" ORDER BY stavkaevidencijetreninga.datumPrisustva";
         lista = broker.getAll(new StavkaEvidencijeTreninga(), uslov);
     }
     

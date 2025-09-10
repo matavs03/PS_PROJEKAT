@@ -64,8 +64,8 @@ public class DodajTrkacaController {
         dtf.addDodajIgracaActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (dtf.getTxtIme().equals("") || dtf.getTxtPrezime().equals("") || dtf.getTxtEmail().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Popunite sva polja");
+                if (dtf.getTxtIme().getText().equals("") || dtf.getTxtPrezime().getText().equals("") || dtf.getTxtEmail().getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti trkača");
                 } else {
                     try {
                         String ime = dtf.getTxtIme().getText().trim();
@@ -101,11 +101,11 @@ public class DodajTrkacaController {
                         Trkac trkac = new Trkac(ime, preime, email, nf);
                         trkac.setIdTrkac(t.getIdTrkac());
                         komunikacija.Komunikacija.getInstance().azurirajTrkaca(trkac);
-                        JOptionPane.showMessageDialog(null, "Uspešno ažuriran trkač");
+                        JOptionPane.showMessageDialog(null, "Sistem je zapamtio trkača");
                         cordinator.Cordinator.getInstance().osveziPrikazTrkacaFormu();
                         dtf.dispose();
                     } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(null, "GRESKA");
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti trkača");
                         ex.printStackTrace();
                     }
                 }

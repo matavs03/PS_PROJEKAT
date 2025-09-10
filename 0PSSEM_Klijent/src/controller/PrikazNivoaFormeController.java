@@ -77,14 +77,14 @@ public class PrikazNivoaFormeController {
                     }
                 }
                 if (nivoiFilter.size() != 0) {
-                    JOptionPane.showMessageDialog(null, "Sistem je pronašao nivoe forme po zadatim parametrima");
+                    JOptionPane.showMessageDialog(null, "Sistem je pronašao nivoe forme po zadatim kriterijumima");
                     pripremiFormuFiltered(nivoiFilter);
                     pnnf.getBtnPretraziNivo().setVisible(true);
                     if (rec.equals("")) {
                         pnnf.getBtnPretraziNivo().setVisible(false);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao nivoe forme po zadatim parametrima");
+                    JOptionPane.showMessageDialog(null, "Sistem nije pronašao nivoe forme po zadatim kriterijumima");
                     pnnf.getBtnPretraziNivo().setVisible(false);
                 }
             }

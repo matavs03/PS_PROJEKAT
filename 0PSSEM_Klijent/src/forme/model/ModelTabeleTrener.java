@@ -71,11 +71,11 @@ public class ModelTabeleTrener extends AbstractTableModel{
             .filter(p -> (username == null || username.isEmpty() || p.getUsername().toLowerCase().contains(username.toLowerCase())))
             .collect(Collectors.toList());
         if(filteredList.size()==0){
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trenere po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trenere po zadatim kriterijumima");
             return false;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Sistem je našao trenere po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao trenere po zadatim kriterijumima");
             this.lista = filteredList;
             fireTableDataChanged();
             return true;
@@ -91,11 +91,11 @@ public class ModelTabeleTrener extends AbstractTableModel{
             .filter(p -> (username == null || username.isEmpty() || p.getUsername().toLowerCase().contains(username.toLowerCase())))      
             .collect(Collectors.toList());
         if(filteredList.size()==0){
-            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trenere po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem nije uspeo na nadje trenere po zadatim kriterijumima");
             return null;
         }
         else{
-            JOptionPane.showMessageDialog(null, "Sistem je našao trenere po zadatim parametrima");
+            JOptionPane.showMessageDialog(null, "Sistem je našao trenere po zadatim kriterijumima");
   
               List<Trener> trener = new ArrayList<>();
             trener.add(filteredList.get(0));
