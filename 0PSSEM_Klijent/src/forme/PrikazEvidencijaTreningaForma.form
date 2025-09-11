@@ -35,13 +35,8 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnDodajStavku" max="32767" attributes="0"/>
-                          <Component id="btnIzmeniEvidenciju" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnIzmeniEvidenciju" alignment="0" pref="111" max="32767" attributes="0"/>
                           <Component id="btnObrisiEvidenciju" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnIzmeniStavku" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnObrisiStavku" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnSacuvajIzmene" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnPonistiIzmene" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -111,26 +106,13 @@
                       <Component id="btnIzmeniEvidenciju" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnObrisiEvidenciju" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnDodajStavku" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" min="-2" pref="180" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnIzmeniStavku" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnObrisiStavku" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnSacuvajIzmene" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnPonistiIzmene" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jScrollPane2" min="-2" pref="180" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jScrollPane2" min="-2" pref="180" max="-2" attributes="0"/>
               <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -213,21 +195,6 @@
         <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnIzmeniStavku">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Izmeni"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnObrisiStavku">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnDodajStavku">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Dodaj stavku"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" value="Trka&#x10d;:"/>
@@ -265,16 +232,6 @@
     <Component class="javax.swing.JButton" name="btnPretraziEvidenciju">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pretra&#x17e;i evidenciju"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSacuvajIzmene">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Sa&#x10d;uvaj izmene"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnPonistiIzmene">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Poni&#x161;ti izmene"/>
       </Properties>
     </Component>
   </SubComponents>

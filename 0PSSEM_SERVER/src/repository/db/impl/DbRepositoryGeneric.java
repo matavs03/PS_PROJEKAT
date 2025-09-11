@@ -72,14 +72,22 @@ public class DbRepositoryGeneric implements DbRepository<ApstraktniDomenskiObjek
 
     
 
-   
+    @Override
+    public int addReturnId(ApstraktniDomenskiObjekat param) throws Exception {
+        String upit = "INSERT INTO " + param.vratiNazivTabele()
+               + "(" + param.vratiKoloneZaUbacivanje() + ") VALUES(" + param.vratiVrednostiZaUbacivanje() + ")";
+       Statement st = DbConnectionFactory.getInstance().getConnection().createStatement();
+       st.executeUpdate(upit, Statement.RETURN_GENERATED_KEYS);
+       ResultSet rs = st.getGeneratedKeys();
+       int id = -1;
+       if (rs.next()) {
+           id = rs.getInt(1);
+       }
+        rs.close();
+       st.close();
+       return id;
+    }
 
-    
 
-    
-
-    
-
-    
     
 }

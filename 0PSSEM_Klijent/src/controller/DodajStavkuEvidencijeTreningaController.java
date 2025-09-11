@@ -77,7 +77,10 @@ public class DodajStavkuEvidencijeTreningaController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EvidencijaTreninga et = (EvidencijaTreninga) cordinator.Cordinator.getInstance().vratiParam("evidencijaTreninga");
-
+                if(et.getDatumDo()!=null){
+                    JOptionPane.showMessageDialog(null, "Evidencija je zavrsena");
+                    return;
+                }
                 LocalDate datumPrisustva;
                 try {
                     int dan = Integer.parseInt(dsetf.getTxtDan().getText().strip());

@@ -234,9 +234,8 @@ public class Cordinator {
     }
 
     public void dodajUListuDodatih(StavkaEvidencijeTreninga stavka) {
-        petController.getStavke().add(stavka);
-        petController.getNoveStavke().add(stavka);
-        petController.osveziTabeluStavki();
+        detController.getStavke().add(stavka);
+        detController.osveziTabeluStavki();
 
     }
 
@@ -246,20 +245,19 @@ public class Cordinator {
     }
 
     public void dodajUListuIzmenjenih(StavkaEvidencijeTreninga stavka) {
-    List<StavkaEvidencijeTreninga> stavke = petController.getStavke();
+    List<StavkaEvidencijeTreninga> stavke = detController.getStavke();
 
     for (int i = 0; i < stavke.size(); i++) {
         StavkaEvidencijeTreninga st = stavke.get(i);
         if (st.getEvidencija().getIdEvidencijaTreninga()==stavka.getEvidencija().getIdEvidencijaTreninga() && st.getRb() == stavka.getRb()) {
-            // menjaš objekat direktno u glavnoj listi
             st.setDatumPrisustva(stavka.getDatumPrisustva());
             st.setOcena(stavka.getOcena());
             st.setTrening(stavka.getTrening());
-            petController.getIzmenjeneStavke().add(st);
+            
             break;
         }
     }
-    petController.osveziTabeluStavki();
+    detController.osveziTabeluStavki();
     
     
 }

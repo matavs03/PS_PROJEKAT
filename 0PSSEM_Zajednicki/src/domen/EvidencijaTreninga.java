@@ -127,20 +127,10 @@ public class EvidencijaTreninga implements ApstraktniDomenskiObjekat {
             return false;
         }
         final EvidencijaTreninga other = (EvidencijaTreninga) obj;
-        if (this.idEvidencijaTreninga != other.idEvidencijaTreninga) {
-            return false;
-        }
-        if (!Objects.equals(this.datumOd, other.datumOd)) {
-            return false;
-        }
-        if (!Objects.equals(this.datumDo, other.datumDo)) {
-            return false;
-        }
-        if (!Objects.equals(this.trener, other.trener)) {
-            return false;
-        }
-        return Objects.equals(this.trkac, other.trkac);
+        return this.idEvidencijaTreninga == other.idEvidencijaTreninga;
     }
+
+    
 
     @Override
     public String vratiNazivTabele() {

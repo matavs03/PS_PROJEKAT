@@ -243,10 +243,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(evidencije);
                         break;
                         
-                    case UCITAJ_STAVKE_EVIDENCIJE_TRENINGA:
-                        List<StavkaEvidencijeTreninga> stavke = Controller.getInstance().ucitajStavkeEvidencijeTreninga((int)zahtev.getParametar());
-                        odgovor.setOdgovor(stavke);
-                        break;
+                  
                         
                     case OBRISI_EVIDENCIJU_TRENINGA:
                         try {
@@ -266,6 +263,8 @@ public class ObradaKlijentskihZahteva extends Thread {
                         }
                         break;
                         
+                        
+                        
                     case AZURIRAJ_EVIDENCIJU_TRENINGA:
                         try {
                             Controller.getInstance().azurirajEvidencijuTreninga((EvidencijaTreninga)zahtev.getParametar());
@@ -275,32 +274,11 @@ public class ObradaKlijentskihZahteva extends Thread {
                         }
                         break;
                         
-                    case DODAJ_STAVKU_EVIDENCIJE_TRENINGA:
-                        try {
-                            Controller.getInstance().dodajStavkuEvidencijeTreninga((StavkaEvidencijeTreninga)zahtev.getParametar());
-                            odgovor.setOdgovor(null);
-                        } catch (Exception e) {
-                            odgovor.setOdgovor(e);
-                        }
-                        break;
+                    
                         
-                    case OBRISI_STAVKU_EVIDENCIJE_TRENINGA:
-                        try {
-                            Controller.getInstance().obrisiStavkuEvidencijeTreninga((StavkaEvidencijeTreninga)zahtev.getParametar());
-                            odgovor.setOdgovor(null);
-                        } catch (Exception e) {
-                            odgovor.setOdgovor(e);
-                        }
-                        break;
+                    
                         
-                    case AZURIRAJ_STAVKU_EVIDENCIJE_TRENINGA:
-                        try {
-                            Controller.getInstance().azurirajStavkuEvidencijeTreninga((StavkaEvidencijeTreninga)zahtev.getParametar());
-                            odgovor.setOdgovor(null);
-                        } catch (Exception e) {
-                            odgovor.setOdgovor(e);
-                        }
-                        break;
+                    
                         
                     case UCITAJ_TRENER_SERTIFIKAT:
                         List<TrenerSertifikat> ts = Controller.getInstance().ucitajTrnerSertifikat();

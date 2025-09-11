@@ -34,25 +34,18 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         return tblStavke;
     }
 
-    public JButton getBtnDodajStavku() {
-        return btnDodajStavku;
-    }
+    
 
     public JButton getBtnIzmeniEvidenciju() {
         return btnIzmeniEvidenciju;
     }
 
-    public JButton getBtnIzmeniStavku() {
-        return btnIzmeniStavku;
-    }
+   
 
     public JButton getBtnObrisiEvidenciju() {
         return btnObrisiEvidenciju;
     }
 
-    public JButton getBtnObrisiStavku() {
-        return btnObrisiStavku;
-    }
 
     public JButton getBtnPretraziEvidencije() {
         return btnPretraziEvidencije;
@@ -74,13 +67,7 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         return txtTrkac;
     }
 
-    public JButton getBtnPonistiIzmene() {
-        return btnPonistiIzmene;
-    }
-
-    public JButton getBtnSacuvajIzmene() {
-        return btnSacuvajIzmene;
-    }
+    
 
     
     
@@ -101,9 +88,6 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         tblStavke = new javax.swing.JTable();
         btnIzmeniEvidenciju = new javax.swing.JButton();
         btnObrisiEvidenciju = new javax.swing.JButton();
-        btnIzmeniStavku = new javax.swing.JButton();
-        btnObrisiStavku = new javax.swing.JButton();
-        btnDodajStavku = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtTrkac = new javax.swing.JTextField();
@@ -112,8 +96,6 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         cbxTrening = new javax.swing.JComboBox<>();
         btnPretraziEvidencije = new javax.swing.JButton();
         btnPretraziEvidenciju = new javax.swing.JButton();
-        btnSacuvajIzmene = new javax.swing.JButton();
-        btnPonistiIzmene = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -161,12 +143,6 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
 
         btnObrisiEvidenciju.setText("Obriši");
 
-        btnIzmeniStavku.setText("Izmeni");
-
-        btnObrisiStavku.setText("Obriši");
-
-        btnDodajStavku.setText("Dodaj stavku");
-
         jLabel3.setText("Trkač:");
 
         jLabel4.setText("Trener:");
@@ -176,10 +152,6 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         btnPretraziEvidencije.setText("Pretraži evidencije");
 
         btnPretraziEvidenciju.setText("Pretraži evidenciju");
-
-        btnSacuvajIzmene.setText("Sačuvaj izmene");
-
-        btnPonistiIzmene.setText("Poništi izmene");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,13 +168,8 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
                             .addComponent(jScrollPane2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnDodajStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnIzmeniEvidenciju, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnObrisiEvidenciju, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnIzmeniStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnObrisiStavku, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnPonistiIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnIzmeniEvidenciju, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(btnObrisiEvidenciju, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -252,23 +219,12 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnIzmeniEvidenciju)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnObrisiEvidenciju)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnDodajStavku))
+                        .addComponent(btnObrisiEvidenciju))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnIzmeniStavku)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnObrisiStavku)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSacuvajIzmene)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnPonistiIzmene))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
@@ -285,15 +241,10 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDodajStavku;
     private javax.swing.JButton btnIzmeniEvidenciju;
-    private javax.swing.JButton btnIzmeniStavku;
     private javax.swing.JButton btnObrisiEvidenciju;
-    private javax.swing.JButton btnObrisiStavku;
-    private javax.swing.JButton btnPonistiIzmene;
     private javax.swing.JButton btnPretraziEvidencije;
     private javax.swing.JButton btnPretraziEvidenciju;
-    private javax.swing.JButton btnSacuvajIzmene;
     private javax.swing.JComboBox<Trening> cbxTrening;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -328,25 +279,7 @@ public class PrikazEvidencijaTreningaForma extends javax.swing.JFrame {
         btnPretraziEvidenciju.addActionListener(actionListener);
     }
 
-    public void dodajStavkuAddActionListener(ActionListener actionListener) {
-        btnDodajStavku.addActionListener(actionListener);
-    }
-
-    public void obrisiStavkuAddActionListener(ActionListener actionListener) {
-        btnObrisiStavku.addActionListener(actionListener);
-    }
-
-    public void sIAddActionListener(ActionListener actionListener) {
-        btnSacuvajIzmene.addActionListener(actionListener);
-    }
-
-    public void pIAddActionListener(ActionListener actionListener) {
-        btnPonistiIzmene.addActionListener(actionListener);
-    }
-
-    public void izmeniStavkuAddActionListener(ActionListener actionListener) {
-        btnIzmeniStavku.addActionListener(actionListener);
-    }
+    
 
     
 }

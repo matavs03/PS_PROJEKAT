@@ -5,7 +5,9 @@
 package operacija.evidenicjatreninga;
 
 import domen.EvidencijaTreninga;
+import domen.StavkaEvidencijeTreninga;
 import operacija.ApstraktnaGenerickaOperacija;
+import repository.db.impl.DbRepositoryGeneric;
 
 /**
  *
@@ -22,7 +24,17 @@ public class DodajEvidencijuTreningaSO extends ApstraktnaGenerickaOperacija{
 
     @Override
     protected void izvrsiOperaciju(Object objekat, String kljuc) throws Exception {
-        broker.add(objekat);
+        EvidencijaTreninga et = (EvidencijaTreninga) objekat;
+
+
+        int noviIdEvidencije = ((DbRepositoryGeneric) broker).addReturnId(et);
+        et.setIdEvidencijaTreninga(noviIdEvidencije);
+
+
+        for (StavkaEvidencijeTreninga st : et.getStavke()) {
+            st.setEvidencija(et);
+            broker.add(st);
+        }
     }
     
 }

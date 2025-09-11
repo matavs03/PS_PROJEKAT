@@ -29,6 +29,7 @@ public class DodajNivoFormeController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String naziv = dnff.getTxtNaziv().getText().strip();
+                
                 if(naziv.equals("")){
                     JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti nivo forme");
                     return;

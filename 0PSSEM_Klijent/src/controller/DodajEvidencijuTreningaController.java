@@ -5,15 +5,22 @@
 package controller;
 
 import domen.EvidencijaTreninga;
+import domen.StavkaEvidencijeTreninga;
 import domen.Trener;
+import domen.Trening;
 import domen.Trkac;
 import forme.DodajEvidencijuTreningaForma;
 import forme.mod.FormaMod;
+import forme.model.ModelTabeleEvidencijeTreninga;
+import forme.model.ModelTabeleStavke;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
@@ -26,10 +33,16 @@ import javax.swing.JOptionPane;
 public class DodajEvidencijuTreningaController {
 
     private final DodajEvidencijuTreningaForma detf;
+    EvidencijaTreninga et;
+    private List<StavkaEvidencijeTreninga> stavke;
 
     public DodajEvidencijuTreningaController(DodajEvidencijuTreningaForma detf) {
         this.detf = detf;
         addActionListeners();
+    }
+
+    public List<StavkaEvidencijeTreninga> getStavke() {
+        return stavke;
     }
 
     public void pripremiFormu(FormaMod mod) {
@@ -48,11 +61,31 @@ public class DodajEvidencijuTreningaController {
         }
 
         if (mod.equals(FormaMod.DODAJ)) {
+            detf.getSkrol().setVisible(false);
+            detf.getCbxTrening().removeAllItems();
             detf.getBtnAzuriraj().setVisible(false);
+            detf.getTblStavke().setVisible(false);
+            detf.getBtnDodajStavku().setVisible(false);
+            detf.getBtnIzmeniStavku().setVisible(false);
+            detf.getBtnObrisiStavku().setVisible(false);
+            detf.remove(detf.getSkrol());
+            detf.revalidate();
+            detf.repaint();
+            List<Trening> tren = komunikacija.Komunikacija.getInstance().ucitajTreninge();
+            for (Trening trening : tren) {
+                detf.getCbxTrening().addItem(trening);
+            }
         } else {
+
+            detf.getLblOcena().setVisible(false);
+            detf.getLblTrening().setVisible(false);
+            detf.getCbxTrening().setVisible(false);
+            detf.getTxtOcena().setVisible(false);
             detf.getBtnAzuriraj().setVisible(true);
             detf.getBtnDodaj().setVisible(false);
-            EvidencijaTreninga et = (EvidencijaTreninga) cordinator.Cordinator.getInstance().vratiParam("evidencijaTreninga");
+
+            et = (EvidencijaTreninga) cordinator.Cordinator.getInstance().vratiParam("evidencijaTreninga");
+            stavke = et.getStavke();
             Function<Date, LocalDate> toLocalDateSafe = date -> {
                 if (date == null) {
                     return null;
@@ -79,7 +112,8 @@ public class DodajEvidencijuTreningaController {
             }
             detf.getCbxTrener().setSelectedItem(et.getTrener());
             detf.getCbxTrkac().setSelectedItem(et.getTrkac());
-
+            stavke = et.getStavke();
+            osveziTabeluStavki();
         }
     }
 
@@ -87,6 +121,13 @@ public class DodajEvidencijuTreningaController {
         pripremiFormu(mod);
         detf.setLocationRelativeTo(null);
         detf.setVisible(true);
+    }
+
+    public void osveziTabeluStavki() {
+
+        ModelTabeleStavke mts = new ModelTabeleStavke(new ArrayList<>(stavke));
+        detf.getTblStavke().setModel(mts);
+
     }
 
     private void addActionListeners() {
@@ -154,10 +195,30 @@ public class DodajEvidencijuTreningaController {
                     utilDatumDo = Date.from(datumDo.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 }
 
-                EvidencijaTreninga et = new EvidencijaTreninga(-1, utilDatumOd, utilDatumDo, 0, 0, t, tr);
+                int ocena;
+                try {
+                    ocena = Integer.parseInt(detf.getTxtOcena().getText().strip());
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Ocena mora biti broj.");
+                    return;
+                }
+                if (ocena < 1 || ocena > 10) {
+                    JOptionPane.showMessageDialog(null, "Ocena mora biti između 1 i 10.");
+                    return;
+                }
+
+                Trening trening = (Trening) detf.getCbxTrening().getSelectedItem();
+
+                EvidencijaTreninga et1 = new EvidencijaTreninga(-1, utilDatumOd, utilDatumDo, 0, 0, t, tr);
+
+                StavkaEvidencijeTreninga set = new StavkaEvidencijeTreninga(et1, ocena, utilDatumOd, ocena, trening);
+                List<StavkaEvidencijeTreninga> stavkeT = new ArrayList<>();
+                stavkeT.add(set);
+
+                et1.setStavke(stavkeT);
 
                 try {
-                    komunikacija.Komunikacija.getInstance().dodajEvidencijuTreninga(et);
+                    komunikacija.Komunikacija.getInstance().dodajEvidencijuTreninga(et1);
                     JOptionPane.showMessageDialog(null, "Sistem je zapamtio evidenciju treninga");
 
                     detf.dispose();
@@ -245,7 +306,7 @@ public class DodajEvidencijuTreningaController {
                     }
 
                     if (datumOd.isAfter(datumPrveStavke)) {
-                        JOptionPane.showMessageDialog(null, "Datum početka ne može biti posle prve stavke u evidenciji.");
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                         return;
                     }
                 }
@@ -262,23 +323,81 @@ public class DodajEvidencijuTreningaController {
                                 .toLocalDate();
                     }
 
-                    if (datumDo!=null && datumDo.isBefore(datumPoslednjeStavke)) {
-                        JOptionPane.showMessageDialog(null, "Datum završetka mora biti posle poslednje stavke u evidenciji.");
+                    if (datumDo != null && datumDo.isBefore(datumPoslednjeStavke)) {
+                        JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                         return;
                     }
                 }
 
                 EvidencijaTreninga et = new EvidencijaTreninga(et1.getIdEvidencijaTreninga(), utilDatumOd, utilDatumDo, et1.getBrojTreninga(), et1.getProsecnaOcena(), t, tr);
-
+                et.setStavke(new ArrayList<>(stavke));
                 try {
                     komunikacija.Komunikacija.getInstance().azurirajEvidencijuTreninga(et);
                     JOptionPane.showMessageDialog(null, "Sistem je zapamtio evidenciju treninga");
                     cordinator.Cordinator.getInstance().osveziPrikazEvidencijeTreningaFormu();
-                    detf.dispose();
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Sistem ne može da zapamti evidenciju treninga");
                 }
+            }
+        });
+
+        detf.dodajStavkuAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                cordinator.Cordinator.getInstance().dodajParam("evidencijaTreninga", et);
+                cordinator.Cordinator.getInstance().otvoriDodajStavkuEvidencijeTreningaFormu();
+
+            }
+        });
+
+        detf.obrisiStavkuAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int red = detf.getTblStavke().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste odabrali red");
+                    return;
+                }
+
+                ModelTabeleStavke mts = (ModelTabeleStavke) detf.getTblStavke().getModel();
+                StavkaEvidencijeTreninga set = mts.getLista().get(red);
+                try {
+
+                    for (StavkaEvidencijeTreninga stavkaEvidencijeTreninga : stavke) {
+                        if (stavkaEvidencijeTreninga.getEvidencija().getIdEvidencijaTreninga() == set.getEvidencija().getIdEvidencijaTreninga() && stavkaEvidencijeTreninga.getRb() == set.getRb()) {
+                            stavke.remove(stavkaEvidencijeTreninga);
+                            break;
+                        }
+                    }
+                    osveziTabeluStavki();
+                    JOptionPane.showMessageDialog(null, "Sistem je obrisao stavku evidencije treninga");
+
+                    osveziTabeluStavki();
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Sistem nije mogao da obriše stavku evidencije treninga");
+                }
+
+            }
+        });
+
+        detf.izmeniStavkuAddActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int red = detf.getTblStavke().getSelectedRow();
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(null, "Niste odabrali red");
+                    return;
+                }
+
+                ModelTabeleStavke mts = (ModelTabeleStavke) detf.getTblStavke().getModel();
+                StavkaEvidencijeTreninga set = mts.getLista().get(red);
+                cordinator.Cordinator.getInstance().dodajParam("stavkaEvidencijaTreninga", set);
+                cordinator.Cordinator.getInstance().otvoriIzmeniStavkuEvidencijeTreninga();
+
             }
         });
 

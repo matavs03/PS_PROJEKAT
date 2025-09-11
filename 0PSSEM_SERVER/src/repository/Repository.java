@@ -16,4 +16,5 @@ public interface Repository<T> {
     void edit(T param) throws Exception;
     void delete(T param) throws Exception;
     List<T> getAll() throws Exception;
+    int addReturnId(T param) throws Exception;
 }

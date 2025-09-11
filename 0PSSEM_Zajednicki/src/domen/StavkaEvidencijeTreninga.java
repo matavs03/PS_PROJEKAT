@@ -34,7 +34,6 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
         this.trening = trening;
     }
 
-
     public EvidencijaTreninga getEvidencija() {
         return evidencija;
     }
@@ -150,7 +149,6 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String datumPrisustvaStr = "'" + sdf.format(datumPrisustva) + "'";
 
-
         return evidencija.getIdEvidencijaTreninga() + ", "
                 + datumPrisustvaStr + ", "
                 + ocena + ", "
@@ -169,7 +167,10 @@ public class StavkaEvidencijeTreninga implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "datumPrisustva='" + datumPrisustva + "',ocena=" + ocena + ",trening=" + trening.getIdTrening();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+        String datumPrisustvaStr = "'" + sdf.format(datumPrisustva) + "'";
+
+        return "datumPrisustva=" + datumPrisustvaStr + ", ocena=" + ocena + ", trening=" + trening.getIdTrening();
     }
 
 }
